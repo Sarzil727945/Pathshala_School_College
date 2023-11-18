@@ -14,6 +14,8 @@ import ContentLoader from 'react-content-loader';
 
 
 const AdminSidebar = ({ sidebarOpen, child, toggleSidebar, props }) => {
+    // Check if code is running in a browser environment
+  const isBrowser = typeof window !== 'undefined';
 
     const [users, setUsers] = useState([])
     const [loading, setLoading] = useState(true);
@@ -23,13 +25,15 @@ const AdminSidebar = ({ sidebarOpen, child, toggleSidebar, props }) => {
 
 
     const handleLogout = () => {
-        sessionStorage.removeItem('user_id');
-        sessionStorage.removeItem('full_name');
-        sessionStorage.removeItem('role_name');
-        sessionStorage.removeItem('photo');
-        sessionStorage.removeItem('pageGroup');
-        sessionStorage.removeItem('controllerName');
-        window.location.href = '/admin/login/login';
+        if (isBrowser) {
+            sessionStorage.removeItem('user_id');
+            sessionStorage.removeItem('full_name');
+            sessionStorage.removeItem('role_name');
+            sessionStorage.removeItem('photo');
+            sessionStorage.removeItem('pageGroup');
+            sessionStorage.removeItem('controllerName');
+            window.location.href = '/admin/login/login'; 
+        }
     };
 
 
@@ -76,15 +80,15 @@ const AdminSidebar = ({ sidebarOpen, child, toggleSidebar, props }) => {
     }
 
 
+  
 
-
-    const userId = sessionStorage?.getItem('user_id');
-    const fullName = sessionStorage
-        ?.getItem('full_name');
-    const roleName = sessionStorage?.getItem('role_name');
-    const photo = sessionStorage?.getItem('photo');
-    const pageGroups = sessionStorage?.getItem('pageGroup')
-    const controllerNames = sessionStorage?.getItem('controllerName')
+  // Use sessionStorage only if running in the browser
+  const userId = isBrowser ? sessionStorage?.getItem('user_id') : null;
+  const fullName = isBrowser ? sessionStorage?.getItem('full_name') : null;
+  const roleName = isBrowser ? sessionStorage?.getItem('role_name') : null;
+  const photo = isBrowser ? sessionStorage?.getItem('photo') : null;
+  const pageGroups = isBrowser ? sessionStorage?.getItem('pageGroup') : null;
+  const controllerNames = isBrowser ? sessionStorage?.getItem('controllerName') : null;
 
 
 

@@ -12,10 +12,10 @@ import AdminSidebar from '@/app/(view)/admin_layout/sidebar/page';
 //   }
 
 const AdminTemplate = ({ children }) => {
-    const userId = sessionStorage.getItem('user_id');
-    const fullName = sessionStorage.getItem('full_name');
-    const roleName = sessionStorage.getItem('role_name');
-  
+    const isBrowser = typeof window !== 'undefined';
+  const userId = isBrowser ? sessionStorage?.getItem('user_id') : null;
+  const fullName = isBrowser ? sessionStorage?.getItem('full_name') : null;
+  const roleName = isBrowser ? sessionStorage?.getItem('role_name') : null;
 
       const loginPage = () => {
         window.location.href = '/admin/login';
