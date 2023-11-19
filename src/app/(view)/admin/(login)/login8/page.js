@@ -12,6 +12,7 @@ const Login8 = () => {
             backgroundImage: "url('https://api.urbanitsolution.com/web_content/login/18/imgs/shapes/1.svg')",
             backgroundAttachment: "fixed",
             backgroundSize: 'cover',
+            height: '100vh !important',
         }} >
             <div className="container py-4 h-100" >
                 <div className="row d-flex justify-content-center align-items-center h-100">

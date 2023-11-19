@@ -10,7 +10,8 @@ const Login5 = () => {
         <div
             style={{
                 backgroundColor: "#e9e9e9",
-                color: "#666666"
+                color: "#666666",
+                height: '100vh !important',
             }}
         >
 

@@ -11,7 +11,8 @@ const Login1 = () => {
         <div  style={{
             backgroundImage: "url('https://api.urbanitsolution.com/web_content/login/1/imgs/hero/red.svg')",
             backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover'
+            backgroundSize: 'cover',
+            height: '100vh !important',
           }}
         >
 

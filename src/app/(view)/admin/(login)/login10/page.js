@@ -14,9 +14,10 @@ const Login10 = () => {
       };
     return (
         <section style={{
-            // backgroundImage: "url('https://api.urbanitsolution.com/web_content/login/16/imgs/hero/purple.svg')",
+            backgroundImage: "url('https://api.urbanitsolution.com/web_content/login/16/imgs/hero/purple.svg')",
             backgroundAttachment: "fixed",
             backgroundSize: 'cover',
+            height: '100vh !important',
         }} >
             <div className="container py-4 h-100" >
                 <div className="row d-flex justify-content-center align-items-center h-100">

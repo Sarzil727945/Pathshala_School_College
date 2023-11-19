@@ -7,26 +7,6 @@ import { faCog } from '@fortawesome/free-solid-svg-icons';
 
 const AdminHeader = ({ toggleSidebar }) => {
 
-    // useEffect(() => {
-    //     const jQueryScript = document.createElement('script');
-    //     jQueryScript.src = 'https://code.jquery.com/jquery-3.3.1.slim.min.js';
-    //     jQueryScript.integrity = 'sha384-...'; 
-    //     jQueryScript.crossOrigin = 'anonymous';
-    //     jQueryScript.async = true;
-    //     document.body.appendChild(jQueryScript);
-        
-    //     const bootstrapScript = document.createElement('script');
-    //     bootstrapScript.src = 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js';
-    //     bootstrapScript.integrity = 'sha384-...';  
-    //     bootstrapScript.crossOrigin = 'anonymous';
-    //     bootstrapScript.async = true;
-    //     document.body.appendChild(bootstrapScript);
-
-    //     return () => {
-    //         document.body.removeChild(jQueryScript);
-    //         document.body.removeChild(bootstrapScript);
-    //     };
-    // }, []);
 
     return (
         <nav className="navbar navbar-expand-lg px-4">

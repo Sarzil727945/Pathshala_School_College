@@ -27,7 +27,8 @@ const Login4 = () => {
     };
 
     return (
-        <div className=' login4'>
+        <div className=' login4' style={
+            { height: '100vh !important', }}>
             <section className=" gradient-form bg-bubbles" >
                 <div className="container py-4 h-100" >
                     <div className="row d-flex justify-content-center align-items-center h-100">

@@ -8,7 +8,7 @@ import handleLogin from '../auth';
 const Login = () => {
    
     return (
-        <section className=" gradient-form gradient-custom-2" >
+        <section className=" gradient-form gradient-custom-2 " >
             <div className="container py-4 h-100" >
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-xl-5">

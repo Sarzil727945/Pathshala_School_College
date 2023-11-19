@@ -8,7 +8,7 @@ import handleLogin from '../auth';
 const Login6 = () => {
    
     return (
-        <section className='login6' >
+        <section className='login6' style={{height: '100vh !important',}} >
             <div className="container py-4 h-100" >
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-xl-5">
