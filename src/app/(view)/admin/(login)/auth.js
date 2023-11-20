@@ -2,6 +2,7 @@
 import { getAllUserData, getUserRoleData } from '@/api/adminPage';
 import toast from 'react-hot-toast';
 
+
 const notifyS = (text) => toast.success(text);
 const notifyE = (text) => toast.error(text);
 
@@ -37,7 +38,7 @@ const handleSubmit = async (event) => {
                             const userR = users?.filter((user) => user?.id === (lUser[0]?.role_name));
                             console.log((sUser[0]?.id), (lUser[0]?.full_name), (userR[0]?.role_name));
 
-                            // sessionStorage data set 
+                            // sessionStorage data set         
                             sessionStorage.setItem('user_id', (sUser[0]?.id));
                             sessionStorage.setItem('full_name', (lUser[0]?.full_name))
                             sessionStorage.setItem('role_name', (userR[0]?.role_name))
