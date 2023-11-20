@@ -12,10 +12,12 @@ import { FaAngleDown, FaAngleRight, FaCaretDown } from 'react-icons/fa';
 import AdminHeader from '../header/page';
 import ContentLoader from 'react-content-loader';
 import Loader from '@/api/Loader';
+import { useRouter } from 'next/navigation';
 
 
 
 const AdminSidebar = ({ child, props }) => {
+    const router = useRouter();
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
@@ -27,7 +29,7 @@ const AdminSidebar = ({ child, props }) => {
 
 
     const loginPage = () => {
-         window.location.href = '/admin/login';
+        router.push('/admin/login');
     };
 
     const handleLogout = () => {
@@ -37,7 +39,6 @@ const AdminSidebar = ({ child, props }) => {
         sessionStorage.removeItem('photo');
         sessionStorage.removeItem('pageGroup');
         sessionStorage.removeItem('controllerName');
-        window.location.href = '/admin/login';
     };
 
 
