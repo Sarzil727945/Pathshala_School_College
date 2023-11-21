@@ -37,8 +37,8 @@ const AdminSidebar = ({ child, props }) => {
         localStorage.removeItem('full_name');
         localStorage.removeItem('role_name');
         localStorage.removeItem('photo');
-        localStorage.removeItem('pageGroup');
-        localStorage.removeItem('controllerName');
+        sessionStorage.removeItem('pageGroup');
+        sessionStorage.removeItem('controllerName');
     };
 
 
@@ -79,8 +79,8 @@ const AdminSidebar = ({ child, props }) => {
     const handelPageGroup = (pageGroup, controllerName) => {
         setPageGroup(pageGroup)
         setControllerName(controllerName);
-        localStorage.setItem('pageGroup', pageGroup)
-        localStorage.setItem('controllerName', controllerName)
+        sessionStorage.setItem('pageGroup', pageGroup)
+        sessionStorage.setItem('controllerName', controllerName)
     }
 
     // Use localStorage only if running in the browser
