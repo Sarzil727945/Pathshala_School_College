@@ -38,11 +38,11 @@ const handleSubmit = async (event) => {
                             const userR = users?.filter((user) => user?.id === (lUser[0]?.role_name));
                             console.log((sUser[0]?.id), (lUser[0]?.full_name), (userR[0]?.role_name));
 
-                            // sessionStorage data set         
-                            sessionStorage.setItem('user_id', (sUser[0]?.id));
-                            sessionStorage.setItem('full_name', (lUser[0]?.full_name))
-                            sessionStorage.setItem('role_name', (userR[0]?.role_name))
-                            sessionStorage.setItem('photo', (lUser[0]?.photo))
+                            // localStorage data set         
+                            localStorage.setItem('user_id', (sUser[0]?.id));
+                            localStorage.setItem('full_name', (lUser[0]?.full_name));
+                            localStorage.setItem('role_name', (userR[0]?.role_name));
+                            localStorage.setItem('photo', (lUser[0]?.photo));
                             notifyS('Login Successful');
                             window.location.href = '/Admin/dashboard';
                         })

@@ -12,12 +12,12 @@ import { FaAngleDown, FaAngleRight, FaCaretDown } from 'react-icons/fa';
 import AdminHeader from '../header/page';
 import ContentLoader from 'react-content-loader';
 import Loader from '@/api/Loader';
-import { useRouter } from 'next/navigation';
+import SideLoader from '@/api/SideLoader';
+
 
 
 
 const AdminSidebar = ({ child, props }) => {
-    const router = useRouter();
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
@@ -29,16 +29,16 @@ const AdminSidebar = ({ child, props }) => {
 
 
     const loginPage = () => {
-        router.push('/admin/login');
+        typeof window !== 'undefined' ? window.location.href('/admin/login') : null;
     };
 
     const handleLogout = () => {
-        sessionStorage.removeItem('user_id');
-        sessionStorage.removeItem('full_name');
-        sessionStorage.removeItem('role_name');
-        sessionStorage.removeItem('photo');
-        sessionStorage.removeItem('pageGroup');
-        sessionStorage.removeItem('controllerName');
+        localStorage.removeItem('user_id');
+        localStorage.removeItem('full_name');
+        localStorage.removeItem('role_name');
+        localStorage.removeItem('photo');
+        localStorage.removeItem('pageGroup');
+        localStorage.removeItem('controllerName');
     };
 
 
@@ -79,23 +79,23 @@ const AdminSidebar = ({ child, props }) => {
     const handelPageGroup = (pageGroup, controllerName) => {
         setPageGroup(pageGroup)
         setControllerName(controllerName);
-        sessionStorage.setItem('pageGroup', pageGroup)
-        sessionStorage.setItem('controllerName', controllerName)
+        localStorage.setItem('pageGroup', pageGroup)
+        localStorage.setItem('controllerName', controllerName)
     }
 
-    // Use sessionStorage only if running in the browser
-    const fullName = typeof window !== 'undefined' ? window.sessionStorage.getItem('full_name') : null;
-    const roleName = typeof window !== 'undefined' ? window.sessionStorage.getItem('role_name') : null;
-    const photo = typeof window !== 'undefined' ? window.sessionStorage.getItem('photo') : null;
-    const pageGroups = typeof window !== 'undefined' ? window.sessionStorage.getItem('pageGroup') : null;
-    const controllerNames = typeof window !== 'undefined' ? window.sessionStorage.getItem('controllerName') : null;
-    const userId = typeof window !== 'undefined' ? window.sessionStorage.getItem('user_id') : null;
+    // Use localStorage only if running in the browser
+    const fullName = typeof window !== 'undefined' ? window.localStorage.getItem('full_name') : null;
+    const roleName = typeof window !== 'undefined' ? window.localStorage.getItem('role_name') : null;
+    const photo = typeof window !== 'undefined' ? window.localStorage.getItem('photo') : null;
+    const pageGroups = typeof window !== 'undefined' ? window.localStorage.getItem('pageGroup') : null;
+    const controllerNames = typeof window !== 'undefined' ? window.localStorage.getItem('controllerName') : null;
+    const userId = typeof window !== 'undefined' ? window.localStorage.getItem('user_id') : null;
 
 
 
     const localSPCRemove = () => {
-        sessionStorage.removeItem('pageGroup');
-        sessionStorage.removeItem('controllerName');
+        localStorage.removeItem('pageGroup');
+        localStorage.removeItem('controllerName');
         handelPageGroup('', '')
     }
 
@@ -108,45 +108,10 @@ const AdminSidebar = ({ child, props }) => {
                         <div className={`wrapper ${sidebarOpen ? 'sidebar-active' : ''} `}>
 
                             <div className=' wrapper w-100' >
-
                                 {
-                                    loading ? <>
-                                        <ContentLoader
-                                            speed={2}
-                                            width={300}
-                                            height={615}
-                                            viewBox="0 0 300 615"
-                                            backgroundColor="#f5f5f5"
-                                            foregroundColor="#ebebeb"
-                                            {...props}
-                                        >
-                                            <rect x="79" y="20" rx="0" ry="0" width="0" height="1" />
-                                            <rect x="4" y="1" rx="0" ry="0" width="3" height="600" />
-                                            <rect x="4" y="598" rx="0" ry="0" width="294" height="3" />
-                                            <rect x="158" y="596" rx="0" ry="0" width="5" height="3" />
-                                            <rect x="5" y="1" rx="0" ry="0" width="294" height="3" />
-                                            <rect x="296" y="1" rx="0" ry="0" width="3" height="600" />
-                                            <rect x="5" y="60" rx="0" ry="0" width="294" height="3" />
-                                            <rect x="22" y="20" rx="0" ry="0" width="129" height="23" />
-                                            <rect x="35" y="76" rx="4" ry="4" width="81" height="9" />
-                                            <rect x="271" y="22" rx="4" ry="4" width="18" height="18" />
-                                            <rect x="186" y="76" rx="4" ry="4" width="81" height="9" />
-                                            <rect x="150" y="63" rx="0" ry="0" width="2" height="44" />
-                                            <rect x="6" y="104" rx="0" ry="0" width="144" height="3" />
-                                            <rect x="152" y="106" rx="0" ry="0" width="145" height="1" />
-                                            <rect x="28" y="127" rx="4" ry="4" width="243" height="31" />
-                                            <rect x="62" y="188" rx="4" ry="4" width="148" height="19" />
-                                            <circle cx="39" cy="197" r="10" />
-                                            <circle cx="39" cy="247" r="10" />
-                                            <circle cx="39" cy="297" r="10" />
-                                            <circle cx="39" cy="347" r="10" />
-                                            <rect x="64" y="237" rx="4" ry="4" width="148" height="19" />
-                                            <rect x="65" y="287" rx="4" ry="4" width="148" height="19" />
-                                            <rect x="64" y="337" rx="4" ry="4" width="148" height="19" />
-                                            <circle cx="39" cy="547" r="10" />
-                                        </ContentLoader>
-
-                                    </> : <>
+                                    loading ? <div>
+                                        <SideLoader />
+                                    </div> : <div>
                                         <nav id="sidebar" className={`sidebar ${sidebarOpen ? 'active' : ''}`}>
                                             <div className="sidebar-header mt-2">
                                                 <div></div>
@@ -260,7 +225,7 @@ const AdminSidebar = ({ child, props }) => {
                                                 ))}
                                             </ul>
                                         </nav>
-                                    </>
+                                    </div>
                                 }
 
 
@@ -314,27 +279,24 @@ const AdminSidebar = ({ child, props }) => {
                                         </div>
                                     }
 
-                                    <div>
-
+                                <div>
                                     </div>
                                     <div >
                                         {
                                             loading ?
-
                                                 <Loader />
                                                 :
-                                                <>
+                                                <div>
                                                     {child}
-                                                </>
+                                                </div>
                                         }
-
                                     </div>
 
                                 </div>
                                 {/* Header and subHeader part end  */}
                             </div>
                         </div>
-                    ) : (<div>{ loginPage() }</div>)
+                    ) : (<div> {loginPage()} </div>)
             }
         </div>
     );
