@@ -87,8 +87,8 @@ const AdminSidebar = ({ child, props }) => {
     const fullName = typeof window !== 'undefined' ? window.localStorage.getItem('full_name') : null;
     const roleName = typeof window !== 'undefined' ? window.localStorage.getItem('role_name') : null;
     const photo = typeof window !== 'undefined' ? window.localStorage.getItem('photo') : null;
-    const pageGroups = typeof window !== 'undefined' ? window.localStorage.getItem('pageGroup') : null;
-    const controllerNames = typeof window !== 'undefined' ? window.localStorage.getItem('controllerName') : null;
+    const pageGroups = typeof window !== 'undefined' ? window.sessionStorage.getItem('pageGroup') : null;
+    const controllerNames = typeof window !== 'undefined' ? window.sessionStorage.getItem('controllerName') : null;
     const userId = typeof window !== 'undefined' ? window.localStorage.getItem('user_id') : null;
 
 
