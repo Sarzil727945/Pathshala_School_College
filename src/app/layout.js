@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <link rel="shortcut icon" href="/favicon.jpg" />
-        <link
+        {/* <link
           rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
           integrity="sha384-..."
@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
           src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
           integrity="sha384-..."
           crossOrigin="anonymous"
-        />
+        /> */}
       </head>
 
       <body className={inter.className}>

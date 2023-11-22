@@ -10,14 +10,40 @@ import Link from 'next/link';
 
 import { FaAngleDown, FaAngleRight, FaCaretDown } from 'react-icons/fa';
 import AdminHeader from '../header/page';
-import ContentLoader from 'react-content-loader';
 import Loader from '@/api/Loader';
 import SideLoader from '@/api/SideLoader';
 
+const AdminSidebar = ({ child }) => {
 
+    useEffect(() => {
+        if (typeof document !== 'undefined') {
+            // Load jQuery first
+            const jQueryScript = document.createElement('script');
+            jQueryScript.src = 'https://code.jquery.com/jquery-3.3.1.slim.min.js';
+            jQueryScript.integrity = 'sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo';
+            jQueryScript.crossOrigin = 'anonymous';
+            jQueryScript.async = true;
+    
+            jQueryScript.onload = () => {
+                // Once jQuery is loaded, load Bootstrap
+                const bootstrapScript = document.createElement('script');
+                bootstrapScript.src = 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js';
+                bootstrapScript.integrity = 'sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm';
+                bootstrapScript.crossOrigin = 'anonymous';
+                bootstrapScript.async = true;
+    
+                document.body.appendChild(bootstrapScript);
+            };
+    
+            document.body.appendChild(jQueryScript);
+    
+            return () => {
+                // Cleanup: remove both scripts
+                document.body.removeChild(jQueryScript);
+            };
+        }
+    }, []);
 
-
-const AdminSidebar = ({ child, props }) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen);
@@ -29,6 +55,7 @@ const AdminSidebar = ({ child, props }) => {
 
 
     const loginPage = () => {
+        window.location.href('/admin/login')
         typeof window !== 'undefined' ? window.location.href('/admin/login') : null;
     };
 
@@ -39,6 +66,7 @@ const AdminSidebar = ({ child, props }) => {
         localStorage.removeItem('photo');
         sessionStorage.removeItem('pageGroup');
         sessionStorage.removeItem('controllerName');
+       typeof window !== 'undefined' ? window.location.href('/admin/login') : null;
     };
 
 

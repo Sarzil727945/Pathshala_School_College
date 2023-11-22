@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "start1": "nodemon server.js",
+    "start": "nodemon server.js",
+    "start1": "next start",
     "lint": "next lint"
   },
   "dependencies": {
