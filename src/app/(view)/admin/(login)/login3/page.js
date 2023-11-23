@@ -1,54 +1,66 @@
 'use client'
-
-import '../../../../globals.css'
-import { Image } from 'react-bootstrap';
+import './login3.css'
+import Script from 'next/script';
 import { Toaster } from 'react-hot-toast';
 import handleLogin from '../auth';
 
-const Login2 = () => {
+const Login3 = () => {
 
     return (
-        <div style={{
-            backgroundColor: "#e9e9e9",
-            color: "#666666",
-            height: '100vh !important',
+        <div>
+            <div style={{ margin: '0px' }}>
+                <canvas width="1366" height="641"></canvas>
+                <div className="login-form">
+                    <form method="post" autoComplete="off" onSubmit={handleLogin}>
+                        <p style={{ textAlign: 'center' }}>
+                            <a href="https://atik.urbanitsolution.com/" className="text-center">
+                                <img
+                                    src="https://atik.urbanitsolution.com/files/logo/thumbnail/7632b474c6d5b78e3f6233a87461bf623f453c67.jpeg"
+                                    alt="logo"
+                                    style={{ width: '80px' }}
+                                />
+                            </a>
+                        </p>
 
-        }}
-        >
-
-            <section className=" gradient-form " >
-                <div className="container py-4 h-100" >
-                    <div className="row d-flex justify-content-center align-items-center h-100">
-                        <div className="col-xl-6">
-                            <div className="text-center text-white font-weight-bold mb-5 pt-4">
-                                <h1 className=" text-muted font-weight-bold pt-3 pb-1">Pathshala School &amp; College</h1>
-                                <h4 className=" text-white mb-0 py-1"><span>School Management System</span></h4>
-                                <p>
-                                    <small className="description text-white">Dear user, log in to access the admin area!</small>
-                                </p>
-                            </div>
-
-                        <div className=' pb-5 '>
-                        <div className="form-module py-5 px-4">
-                                <form method="post" autoComplete="off" onSubmit={handleLogin}>
-                                    <h2>Login</h2>
-                                    <div className=' pt-2' style={{ marginBottom: '13px' }}>
-                                        <input type="email" name="email" placeholder="Enter Email Address" required />
-                                    </div>
-                                    <div style={{ marginBottom: '13px' }} className=' py-2'>
-                                        <input type="password" name="password" placeholder="Enter Password" required />
-                                    </div>
-                                    <input type="submit" name="login" className="btn3" id="login-button" value="Login" />
-                                </form>
-                            </div>
+                        <h2 className="font-weight-bold" style={{ textAlign: 'center' }}>
+                            Pathshala School &amp; College
+                        </h2>
+                        <h5 className="text-dark" style={{ textAlign: 'center', margin: '0px' }}>
+                            <span>School Management System</span>
+                        </h5>
+                        <p className="text-center text-dark"><small>
+                            Dear user, log in to access the admin area!</small></p>
+                        <div className="form-group log-status">
+                            <input
+                                type="email"
+                                className="form-control"
+                                name="email"
+                                placeholder="Enter Email Address"
+                                required
+                            />
+                            <i className="fa fa-user"></i>
                         </div>
+                        <div className="form-group log-status">
+                            <input
+                                type="password"
+                                className="form-control"
+                                name="password"
+                                placeholder="Enter Password"
+                                required
+                            />
+                            <i className="fa fa-lock"></i>
                         </div>
-                    </div>
+                        <input type="submit" name="login" className="log-btn" value="Log In" />
+                    </form>
                 </div>
-                <Toaster />
-            </section>
+
+                <Script src="https://api.urbanitsolution.com/web_content/login/3/js/main.js"></Script>
+                <Script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></Script>
+                <Script src="https://api.urbanitsolution.com/web_content/login/3/js/index.js"></Script>
+            </div>
+            <Toaster />
         </div>
     );
 };
 
-export default Login2;
+export default Login3;

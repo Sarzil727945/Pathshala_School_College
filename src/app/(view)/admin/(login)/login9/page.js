@@ -8,62 +8,46 @@ import handleLogin from '../auth';
 const Login9 = () => {
 
     return (
-        <section style={{
-            backgroundImage: "url('https://api.urbanitsolution.com/web_content/login/16/imgs/hero/purple.svg')",
-            backgroundAttachment: "fixed",
-            backgroundSize: 'cover',
+        <div style={{
+            backgroundColor: "#e9e9e9",
+            color: "#666666",
             height: '100vh !important',
-        }} >
-            <div className="container py-4 h-100" >
-                <div className="row d-flex justify-content-center align-items-center h-100">
-                    <div className="col-xl-5">
-                        <div className="text-center text-white font-weight-bold">
-                            <Image src="https://atik.urbanitsolution.com/files/logo/thumbnail/7632b474c6d5b78e3f6233a87461bf623f453c67.jpeg"
-                                style={{ width: "100px" }} alt="logo" />
-                            <h2 className="text-white font-weight-bold pt-3 pb-1">Pathshala School &amp; College</h2>
-                            <h6 className="text-white mb-0 py-1"><span>School Management System</span></h6>
-                            <p>
-                                <small className="text-white">Dear user, log in to access the admin area!</small>
-                            </p>
-                        </div>
-                        <div className="card rounded-3 text-black">
-                            <div className="row g-0">
-                                <div className="col-lg-12">
-                                    <div className="card-body mx-md-4 p-lg-10  mx-lg-4">
-                                        <form onSubmit={handleLogin}>
-                                            <h2 className='text-center mb-5 pt-3'>Log In</h2>
 
-                                            <div className="form-outline mb-4">
-                                                <input
-                                                    required
-                                                    type="email"
-                                                    name="email"
-                                                    id="form2Example11" className="form-control"
-                                                    placeholder="Enter Email or Mobile" />
-                                            </div>
+        }}
+        >
 
-                                            <div className="form-outline mb-4">
-                                                <input
-                                                    required
-                                                    placeholder='Password'
-                                                    type="password"
-                                                    name="password"
-                                                    id="form2Example22" className="form-control" />
-                                            </div>
-                                            <div className="text-center pt-1 mb-5 mt-2">
-                                                <input
-                                                    className="25 px-4 btn btn-info mt-2" type="submit" value="Login In" />
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
+            <section className=" gradient-form " >
+                <div className="container py-4 h-100" >
+                    <div className="row d-flex justify-content-center align-items-center h-100">
+                        <div className="col-xl-6">
+                            <div className="text-center text-white font-weight-bold mb-5 pt-4">
+                                <h1 className=" text-muted font-weight-bold pt-3 pb-1">Pathshala School &amp; College</h1>
+                                <h4 className=" text-white mb-0 py-1"><span>School Management System</span></h4>
+                                <p>
+                                    <small className="description text-white">Dear user, log in to access the admin area!</small>
+                                </p>
                             </div>
+
+                        <div className=' pb-5 '>
+                        <div className="form-module py-5 px-4">
+                                <form method="post" autoComplete="off" onSubmit={handleLogin}>
+                                    <h2>Login</h2>
+                                    <div className=' pt-2' style={{ marginBottom: '13px' }}>
+                                        <input type="email" name="email" placeholder="Enter Email Address" required />
+                                    </div>
+                                    <div style={{ marginBottom: '13px' }} className=' py-2'>
+                                        <input type="password" name="password" placeholder="Enter Password" required />
+                                    </div>
+                                    <input type="submit" name="login" className="btn3" id="login-button" value="Login" />
+                                </form>
+                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <Toaster />
-        </section>
+                <Toaster />
+            </section>
+        </div>
     );
 };
 

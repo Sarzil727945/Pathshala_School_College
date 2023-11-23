@@ -1,0 +1,28 @@
+.account-container {
+    width: 380px;
+    display: block;
+    margin: 20px auto 0 auto;
+    background: #f9f9f9;
+    border: 1px solid #d5d5d5;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px #dadada, inset 0px -3px 0px #e6e6e6;
+}
+
+.content {
+    padding: 16px 28px 23px;
+}
+.login-fields .field {
+    margin-bottom: 1.25em;
+}
+.login-actions {
+    float: right;
+}
+.button12 {
+    background-color:#6f9f0d;
+}
+
+.button12:hover{
+    background-color: #577b0e;
+}

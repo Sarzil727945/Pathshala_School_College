@@ -1,69 +1,43 @@
 'use client'
-
-import '../../../../globals.css'
-import { Image } from 'react-bootstrap';
+import './login8.css'
 import { Toaster } from 'react-hot-toast';
 import handleLogin from '../auth';
 
 const Login8 = () => {
-
     return (
-        <section style={{
-            backgroundImage: "url('https://api.urbanitsolution.com/web_content/login/18/imgs/shapes/1.svg')",
-            backgroundAttachment: "fixed",
-            backgroundSize: 'cover',
-            height: '100vh !important',
-        }} >
-            <div className="container py-4 h-100" >
-                <div className="row d-flex justify-content-center align-items-center h-100">
-                    <div className="col-xl-5">
-                        <div className="text-center text-white font-weight-bold">
-                            <Image src="https://atik.urbanitsolution.com/files/logo/thumbnail/7632b474c6d5b78e3f6233a87461bf623f453c67.jpeg"
-                                style={{ width: "100px" }} alt="logo" />
-                            <h2 className="text-dark  font-weight-bold pt-3 pb-1">Pathshala School &amp; College</h2>
-                            <h6 className="text-dark  mb-0 py-1"><span>School Management System</span></h6>
-                            <p>
-                                <small className="text-dark ">Dear user, log in to access the admin area!</small>
-                            </p>
-                        </div>
-                        <div className="card rounded-3 text-black">
-                            <div className="row g-0">
-                                <div className="col-lg-12">
-                                    <div className="card-body mx-md-4 p-lg-10  mx-lg-4">
-                                        <form onSubmit={handleLogin}>
-                                            <h2 className='text-center mb-5 pt-3'>Log In</h2>
-
-                                            <div className="form-outline mb-4">
-                                                <input
-                                                    required
-                                                    type="email"
-                                                    name="email"
-                                                    id="form2Example11" className="form-control"
-                                                    placeholder="Enter Email or Mobile" />
-                                            </div>
-
-                                            <div className="form-outline mb-4">
-                                                <input
-                                                    required
-                                                    placeholder='Password'
-                                                    type="password"
-                                                    name="password"
-                                                    id="form2Example22" className="form-control" />
-                                            </div>
-                                            <div className="text-center pt-1 mb-5 mt-2">
-                                                <input
-                                                    className=" 25 px-4 btn btn-info mt-2" type="submit" value="Login In" />
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div>
+            <div className="container">
+                <div className="info">
+                    <h1 className="font-weight-bold">Pathshala School &amp; College</h1>
+                    <h5 className="description">School Management System</h5>
+                    <p style={{ letterSpacing: '1px' }}>
+                        <span> Dear user, log in to access the admin area!</span>
+                    </p>
                 </div>
             </div>
+
+            <div className="form">
+                <div className="thumbnail">
+                    <img src="https://atik.urbanitsolution.com/files/logo/thumbnail/7632b474c6d5b78e3f6233a87461bf623f453c67.jpeg" />
+                </div>
+                <div className="row">
+                    <div className="col-sm-12 col-md-12 ">
+                        <div></div>
+                    </div>
+                </div>
+                <br />
+
+                <form method="post" autoComplete="off" className="register-form" onSubmit={handleLogin}>
+                    <input type="email" name="email" placeholder=" Enter Email Address" required="" />
+                    <br />
+                    <input type="password" name="password" placeholder=" Enter Password" required="" />
+                    <br />
+                    <input type="submit" className="btn" name="login" value="Login" />
+                </form>
+            </div>
+
             <Toaster />
-        </section>
+        </div>
     );
 };
 

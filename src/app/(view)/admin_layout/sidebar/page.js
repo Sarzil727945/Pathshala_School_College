@@ -55,8 +55,8 @@ const AdminSidebar = ({ child }) => {
 
 
     const loginPage = () => {
-        // window.location.href('/admin/login')
-        typeof window !== 'undefined' ? window.location.href('/admin/login') : null;
+        window.location.href('/admin/login')
+        // typeof window !== 'undefined' ? window.location.href('/admin/login') : null;
     };
 
     const handleLogout = () => {

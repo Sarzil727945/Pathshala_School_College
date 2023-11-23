@@ -1,36 +1,6 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
-/* @import 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js'; */
-.gradient-custom {
-  /* fallback for old browsers */
-  background: #6a11cb;
-
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
-
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
-  height: 100vh !important;
-
-}
-
-.gradient-custom-2 {
-  /* fallback for old browsers */
-  background: #fccb90;
-
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
-
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
-  height: 100vh !important;
-}
-
-
-
-
 html,
-
 
 a {
 
@@ -177,15 +147,16 @@ a {
 }
 
 .btn5 {
-  border: 2px solid rgba(185,101,86,.8);
-  color: rgba(185,101,86,.8); 
-}
-.btn5:hover{
-  background-color: rgba(185,101,86,.8);
-  color: white; 
-  border: 0px solid rgba(185,101,86,.8);
+  border: 2px solid rgba(185, 101, 86, .8);
+  color: rgba(185, 101, 86, .8);
 }
 
-.login6{
+.btn5:hover {
+  background-color: rgba(185, 101, 86, .8);
+  color: white;
+  border: 0px solid rgba(185, 101, 86, .8);
+}
+
+.login6 {
   background: repeating-linear-gradient(190deg, rgba(255, 0, 0, 0.9) 40px, rgba(255, 153, 0, 0.8) 80px, rgba(255, 255, 0, 0.6) 120px, rgba(0, 255, 0, 0.0) 160px, rgba(0, 0, 255, 0.5) 200px, rgba(75, 0, 130, 0.2) 240px, rgba(238, 130, 238, 0.7) 280px, rgba(255, 0, 0, 0.5) 300px), repeating-linear-gradient(-190deg, rgba(255, 0, 0, 0.0) 30px, rgba(255, 153, 0, 0.0) 60px, rgba(255, 255, 0, 0.0) 90px, rgba(0, 255, 0, 0.9) 120px, rgba(0, 0, 255, 0.6) 150px, rgba(75, 0, 130, 0.3) 180px, rgba(238, 130, 238, 0.6) 210px, rgba(255, 0, 0, 0.4) 230px), repeating-linear-gradient(23deg, red 50px, orange 100px, yellow 150px, green 200px, blue 250px, indigo 300px, violet 350px, red 370px);
 }

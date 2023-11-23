@@ -1,0 +1,223 @@
+/* Base styles */
+*, *:after, *:before {
+    box-sizing: border-box;
+  }
+  html {
+    font-size: 100%;
+    line-height: 1.5;
+    height: 100%;
+  }
+  body {
+      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+  }
+  h1{
+      font-size: 30px;
+  }
+  @keyframes gradient {
+      0% {
+          background-position: 0% 50%;
+      }
+      50% {
+          background-position: 100% 50%;
+      }
+      100% {
+          background-position: 0% 50%;
+      }
+  }
+  body {
+    position: relative;
+    margin: 0;
+    
+    min-height: 100%;
+    /*background: linear-gradient(to bottom, #497BE8 0%, #497BE8 100%);
+    color: #777;*/
+  }
+  img {
+    vertical-align: middle;
+    max-width: 100%;
+  }
+  button {
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+  }
+  /* Container */
+  .container {
+    width: 30em;
+    animation: intro .7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    margin: 150px auto 0px auto;
+  }
+  /* Profile Card */
+  .profile {
+    position: relative;
+  }
+  .profile--open {
+  }
+  .profile--open .profile__form {
+    visibility: visible;
+    height: auto;
+    opacity: 1;
+  }
+  .profile--open .profile__fields {
+    opacity: 1;
+    visibility: visible;
+  }
+  .profile--open .profile__avatar {
+    border-radius: 50%;
+  }
+  .profile__form {
+    position: relative;
+    background: white;
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    padding: 2em;
+    border-radius: .25em;
+    -webkit-filter: drop-shadow(0 0 2em rgba(0,0,0,0.2));
+    transition: 
+      opacity .4s ease-in-out,
+      height .4s ease-in-out,
+      transform .4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+      padding .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .profile__fields {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .profile__avatar {
+    position:absolute;
+      background:#fff;
+      padding:10px;
+    z-index: 1;
+    left: 50%;
+      top:-3em;
+    transform: translateX(-50%);
+    border-radius: 1.25em;
+    overflow: hidden;
+       width: 7em;
+      height: 7em;
+    display: block;
+    transition: transform .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    will-change: transform;
+  }
+  .profile__avatar:focus {
+    outline: 0;
+  }
+  .profile__footer {
+    padding-top: 1em;
+  }
+  .btn{
+      cursor:pointer;
+  }
+  /* Form */
+  .field {
+    position: relative;
+    margin-bottom: 1em;
+  }
+  .label {
+    height: 2rem;
+    line-height: 2rem;
+    bottom: 0;
+    color: #999;
+    transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .input {
+    width: 100%;
+    font-size: 100%;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+    height: 2rem;
+    line-height: 2rem;
+    border-bottom: 1px solid #eee;
+    color: #777;
+    transition: all .2s ease-in;
+  }
+  .input:focus {
+    outline: 0;
+    border-color: #ccc;
+  }
+  /* Using required and a faux pattern to see if input has text from http://stackoverflow.com/questions/16952526/detect-if-an-input-has-text-in-it-using-css */
+  .input:focus + .label,
+  input:valid + .label {
+    transform: translateY(-100%);
+    font-size: 0.75rem;
+    color: #ccc;
+  }
+  /* Button */
+  .btn {
+    border: 0;
+    font-size: 0.75rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    padding: 0 1.5rem;
+    color: white;
+    background: #8E49E8;
+    text-transform: uppercase;
+    border-radius: .25rem;
+    letter-spacing: .2em;
+    transition: background .2s;
+  }
+  .btn:focus {
+    outline: 0;
+  }
+  .btn:hover,
+  .btn:focus {
+    background: #A678E2;
+  }
+  /* Intro animation */
+  @keyframes intro {
+    from {
+      opacity: 0;
+      top: 0;
+    }
+    to {
+      opacity: 1;
+      top: 50%;
+    }
+  }
+  .field .text-danger {
+      color: red;
+  }
+  .alert {
+      padding: 7px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      width: 100%;
+  }
+  .alert-success {
+      color: #3c763d;
+      background-color: #dff0d8;
+      border-color: #d6e9c6;
+  }
+  .alert-danger {
+      color: #a94442;
+      background-color: #f2dede;
+      border-color: #ebccd1;
+  }
+
+
+  /* login.module.css
+.animate__bounce {
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+.animate__animated {
+  animation-duration: 1s; 
+} */
