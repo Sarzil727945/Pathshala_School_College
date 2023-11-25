@@ -5,11 +5,11 @@ import { Image } from 'react-bootstrap';
 import { Toaster } from 'react-hot-toast';
 import handleLogin from '../auth';
 
-const Login8 = () => {
+const Login16 = () => {
 
     return (
         <section style={{
-            backgroundImage: "url('https://api.urbanitsolution.com/web_content/login/18/imgs/shapes/1.svg')",
+            backgroundImage: "url('https://api.urbanitsolution.com/web_content/login/16/imgs/hero/purple.svg')",
             backgroundAttachment: "fixed",
             backgroundSize: 'cover',
             height: '100vh !important',
@@ -20,10 +20,10 @@ const Login8 = () => {
                         <div className="text-center text-white font-weight-bold">
                             <Image src="https://atik.urbanitsolution.com/files/logo/thumbnail/7632b474c6d5b78e3f6233a87461bf623f453c67.jpeg"
                                 style={{ width: "100px" }} alt="logo" />
-                            <h2 className="text-dark  font-weight-bold pt-3 pb-1">Pathshala School &amp; College</h2>
-                            <h6 className="text-dark  mb-0 py-1"><span>School Management System</span></h6>
+                            <h2 className="text-white font-weight-bold pt-3 pb-1">Pathshala School &amp; College</h2>
+                            <h6 className="text-white mb-0 py-1"><span>School Management System</span></h6>
                             <p>
-                                <small className="text-dark ">Dear user, log in to access the admin area!</small>
+                                <small className="text-white">Dear user, log in to access the admin area!</small>
                             </p>
                         </div>
                         <div className="card rounded-3 text-black">
@@ -52,7 +52,7 @@ const Login8 = () => {
                                             </div>
                                             <div className="text-center pt-1 mb-5 mt-2">
                                                 <input
-                                                    className=" 25 px-4 btn btn-info mt-2" type="submit" value="Login In" />
+                                                    className="25 px-4 btn btn-info mt-2" type="submit" value="Login In" />
                                             </div>
                                         </form>
                                     </div>
@@ -67,4 +67,4 @@ const Login8 = () => {
     );
 };
 
-export default Login8;
+export default Login16;

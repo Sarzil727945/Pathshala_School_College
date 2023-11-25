@@ -5,28 +5,25 @@ import { Image } from 'react-bootstrap';
 import { Toaster } from 'react-hot-toast';
 import handleLogin from '../auth';
 
-const Login1 = () => {
-   
+const Login17 = () => {
+
     return (
-        <div  style={{
-            backgroundImage: "url('https://api.urbanitsolution.com/web_content/login/1/imgs/hero/red.svg')",
-            backgroundRepeat: 'no-repeat',
+        <section style={{
+            backgroundImage: "url('https://api.urbanitsolution.com/web_content/login/17/imgs/hero/yellow.svg')",
+            backgroundAttachment: "fixed",
             backgroundSize: 'cover',
             // height: '100vh !important',
-          }}
-        >
-
-        <section className=" gradient-form  bg-transparent" >
+        }} >
             <div className="container py-4 h-100" >
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-xl-5">
-                        <div className="text-center text-white font-weight-bold">
+                        <div className="text-center  font-weight-bold">
                             <Image src="https://atik.urbanitsolution.com/files/logo/thumbnail/7632b474c6d5b78e3f6233a87461bf623f453c67.jpeg"
                                 style={{ width: "100px" }} alt="logo" />
-                            <h2 className="text-white font-weight-bold pt-3 pb-1">Pathshala School &amp; College</h2>
-                            <h6 className=" text-dark mb-0 py-1"><span>School Management System</span></h6>
+                            <h2 className=" font-weight-bold pt-3 pb-1">Pathshala School &amp; College</h2>
+                            <h6 className=" mb-0 py-1"><span>School Management System</span></h6>
                             <p>
-                                <small className="description text-dark">Dear user, log in to access the admin area!</small>
+                                <small >Dear user, log in to access the admin area!</small>
                             </p>
                         </div>
                         <div className="card rounded-3 text-black">
@@ -55,7 +52,7 @@ const Login1 = () => {
                                             </div>
                                             <div className="text-center pt-1 mb-5 mt-2">
                                                 <input
-                                                    className="btn 25 px-4 btn btn-outline-danger mt-2" type="submit" value="Login In" />
+                                                    className="25 px-4 btn btn-info mt-2" type="submit" value="Login In" />
                                             </div>
                                         </form>
                                     </div>
@@ -67,8 +64,7 @@ const Login1 = () => {
             </div>
             <Toaster />
         </section>
-        </div>
     );
 };
 
-export default Login1;
+export default Login17;

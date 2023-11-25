@@ -5,11 +5,11 @@ import { Image } from 'react-bootstrap';
 import { Toaster } from 'react-hot-toast';
 import handleLogin from '../auth';
 
-const Login7 = () => {
+const Login15 = () => {
 
     return (
         <section style={{
-            backgroundImage: "url('https://api.urbanitsolution.com/web_content/login/20/imgs/hero/rainbow-2.svg')",
+            backgroundImage: "url('https://api.urbanitsolution.com/web_content/login/15/imgs/hero/blue.svg')",
             backgroundAttachment: "fixed",
             backgroundSize: 'cover',
             height: '100vh !important',
@@ -52,7 +52,7 @@ const Login7 = () => {
                                             </div>
                                             <div className="text-center pt-1 mb-5 mt-2">
                                                 <input
-                                                    className="btn 25 px-4 btn btn-outline-success mt-2" type="submit" value="Login In" />
+                                                    className="25 px-4 btn btn-info mt-2" type="submit" value="Login In" />
                                             </div>
                                         </form>
                                     </div>
@@ -67,4 +67,4 @@ const Login7 = () => {
     );
 };
 
-export default Login7;
+export default Login15;
