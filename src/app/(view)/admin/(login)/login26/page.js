@@ -4,6 +4,7 @@ import React from 'react';
 import './login26.css'
 import handleLogin from '../auth';
 import { Toaster } from 'react-hot-toast';
+import Head from 'next/head';
 
 
 const Login26 = () => {
@@ -14,11 +15,13 @@ const Login26 = () => {
     return (
         <div>
 
-            {/* <style>
-                {`.btn26-hover:hover {
+            <Head>
+                <style>
+                    {`.btn26-hover:hover {
       background: ${rgbaOrg} !important;
       color: #fff !important;}`}
-            </style> */}
+                </style>
+            </Head>
 
             <section className="fdb-block bg-transparent border-0 m-3 p-5">
                 <div className="container">
