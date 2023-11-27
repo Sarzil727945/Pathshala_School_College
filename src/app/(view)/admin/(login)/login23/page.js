@@ -72,7 +72,7 @@ const Login23 = () => {
 
   return (
     <div style={{
-      background: `linear-gradient(to left, #${generateRandomColor()}, #${generateRandomColor()});`,
+      background: `linear-gradient(to left, #${generateRandomColor()}, #${generateRandomColor()})`,
       width: '100%',
       height: '100%',
       position: 'absolute',
