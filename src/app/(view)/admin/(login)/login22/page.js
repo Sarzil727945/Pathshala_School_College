@@ -48,7 +48,7 @@ const generateRandomDelay = () => `${Math.random() * 40}s`;
 
 const generateRandomDuration = () => `${Math.random() * 50}s`;
 
-const Login23 = () => {
+const Login22 = () => {
   const [circleStyles, setCircleStyles] = useState([]);
 
   useEffect(() => {
@@ -149,4 +149,4 @@ const Login23 = () => {
   );
 };
 
-export default Login23;
+export default Login22;
