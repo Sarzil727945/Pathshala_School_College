@@ -10,7 +10,7 @@ import { Image } from 'react-bootstrap';
 const generateRandomColor = () => Math.floor(Math.random() * 16777215).toString(16);
 
 
-const Home = () => {
+const Login2 = () => {
     return (
         <div>
          
@@ -75,4 +75,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Login2;

@@ -9,6 +9,7 @@ import { Image } from 'react-bootstrap';
 import React, { useEffect, useRef } from 'react';
 import Stats from 'stats.js';
 
+
 const generateRandomColor = () => Math.floor(Math.random() * 16777215).toString(16);
 
 const Login24 = () => {
@@ -149,11 +150,7 @@ const Login24 = () => {
 
         var stats, update;
         stats = new Stats();
-        // stats.setMode(0);
-        // stats.domElement.style.position = 'absolute';
-        // stats.domElement.style.left = '0px';
-        // stats.domElement.style.top = '0px';
-        // document.body.appendChild(stats.domElement);
+
 
         update = function () {
             stats.begin();
@@ -182,7 +179,7 @@ const Login24 = () => {
     return (
         <div className=' position-relative'>
             <div id="particles-js" style={{
-                 background: `linear-gradient(to left, #${generateRandomColor()}, #${generateRandomColor()})`,
+                background: `linear-gradient(to left, #${generateRandomColor()}, #${generateRandomColor()})`,
             }}>
 
             </div>
@@ -225,7 +222,7 @@ const Login24 = () => {
                                                             type="password"
                                                             name="password"
                                                             id="form2Example22" className="form-control" />
-                                                    </div>
+                                                    </div>                                            
                                                     <div className="text-center pt-1 mb-5 mt-2">
                                                         <input
                                                             className="btn 25 px-4 btn btn-outline-success mt-2" type="submit" value="Login In" />
