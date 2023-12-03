@@ -15,7 +15,7 @@ const Login13 = () => {
         const minDist = 10;
         const maxDist = 30;
         const initialWidth = 10;
-        const maxLines = 100;
+        const maxLines = 55;
         const initialLines = 4;
         const speed = 5;
 
@@ -146,8 +146,8 @@ const Login13 = () => {
 
     return (
         <div>
-            <div style={{ margin: '0px' }}>
-                <canvas id='c' width="1366" height="641"></canvas>
+            <div>
+                <canvas id='c' width="100% !important" height="641"></canvas>
                 <div className="login-form">
                     <form method="post" autoComplete="off" onSubmit={handleLogin}>
                         <p style={{ textAlign: 'center' }}>
