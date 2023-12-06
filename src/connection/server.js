@@ -32,6 +32,11 @@ app.post('/admin/delete/', adminPageList.deleteAdminPageList)
 app.delete('/admin/allAdmin/:id', adminPageList.deleteSingleAdminPageList)
 
 
+const smsSettings = require('../app/model/SMS/smsSettings')
+app.put('/smsSettings/:id', smsSettings.updateSmsSettings)
+app.get('/smsSettings/', smsSettings.getSmsSettings)
+// app.get('/addColumn', smsSettings.addColumn)
+
 
 const faIcons = require('../app/model/Admin/faIconsModel')
 app.get('/faIcons', faIcons.getAllIconList)
