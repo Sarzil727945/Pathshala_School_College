@@ -37,6 +37,12 @@ app.put('/smsSettings/:id', smsSettings.updateSmsSettings)
 app.get('/smsSettings/', smsSettings.getSmsSettings)
 // app.get('/addColumn', smsSettings.addColumn)
 
+const excelSheet = require('../app/model/ExcelSheet/excelSheet')
+app.post('/createExcelSheet/', excelSheet.createExcelSheet)
+app.put('/updateExcelSheet/:id', excelSheet.updateExcelSheet)
+app.get('/getExcelSheet/', excelSheet.getExcelSheet)
+// app.get('/addTable', excelSheet.addTable)
+
 
 const faIcons = require('../app/model/Admin/faIconsModel')
 app.get('/faIcons', faIcons.getAllIconList)
