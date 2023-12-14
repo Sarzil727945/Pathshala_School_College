@@ -1,8 +1,13 @@
 'use client'
 import { useEffect, useState } from "react";
 import * as XLSX from "xlsx";
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import styles from './style.css';
 import Swal from "sweetalert2";
+import React, { useRef } from 'react';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+import { useReactToPrint } from "react-to-print";
 
 const ExcelSheet = () => {
   const [data, setData] = useState([]);
@@ -24,10 +29,8 @@ const ExcelSheet = () => {
   const newArray = []
   for (let index = 0; index < data.length; index++) {
     const element = data[index];
-    const name = `${element["First Name"]} ${element["Last Name"]} `
-
+    const name = element?.Name || `${element["First Name"]} ${element["Last Name"]} `
     const arrObj = { id: element.Id, name: name, gender: element.Gender, country: element.Country, age: element.Age, date: element.Date }
-
     newArray.push(arrObj);
   }
 
@@ -41,6 +44,30 @@ const ExcelSheet = () => {
     const data = await response.json();
     setExcelSheet(data);
   };
+
+  const tableRef = useRef();
+
+  const handleExportToPDF = () => {
+    const input = tableRef.current;
+
+    html2canvas(input).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('l', 'mm', 'a4');
+      pdf.addImage(imgData, 'PNG', 0, 0, pdf.internal.pageSize.getWidth(), pdf.internal.pageSize.getHeight());
+      pdf.save('table.pdf');
+    });
+  };
+
+
+  // pdf 2
+  const conponentPDF = useRef();
+  const generatePDF = useReactToPrint({
+    content: () => conponentPDF.current,
+    documentTitle: "pdfDownloadSA",
+    // onAfterPrint: () => alert("Data saved in PDF")
+  });
+
+
 
 
   const dataPost = () => {
@@ -72,47 +99,138 @@ const ExcelSheet = () => {
 
   }
 
-console.log(excelSheet);
 
 
   return (
     <div className="App">
 
-      <input
-        type="file"
-        accept=".xlsx, .xls"
-        onChange={handleFileUpload}
-      />
+      <div>
+        <input
+          type="file"
+          accept=".xlsx, .xls"
+          onChange={handleFileUpload}
+        />
 
-      <button onClick={() => dataPost()}>Save Data</button>
+        <button onClick={() => dataPost()}>Save Data</button>
 
-      {data.length > 0 && (
-        <table className="table">
-          <thead>
-            <tr>
-
-              <th>Id</th>
-              <th>Name</th>
-              <th>Gender</th>
-              <th>Country</th>
-              <th>Age</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {newArray.map((value, index) => (
-              <tr key={index}>
-                <td>{value.id}</td>
-                <td>{value.name}</td>
-                <td>{value.gender}</td>
-                <td>{value.country}</td>
-                <td>{value.age}</td>
-                <td>{value.date}</td>
+        {data.length > 0 && (
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Country</th>
+                <th>Age</th>
+                <th>Date</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+            </thead>
+            <tbody>
+              {newArray.map((value, index) => (
+                <tr key={index}>
+                  <td>{value.id}</td>
+                  <td>{value.name}</td>
+                  <td>{value.gender}</td>
+                  <td>{value.country}</td>
+                  <td>{value.age}</td>
+                  <td>{value.date}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
+
+      {/* download ExcelSheet part start  */}
+      <div className="container mt-5 pt-5">
+        <h3 className="mt-3 text-success"><center>Export React Table Data into EXCEL Sheet and PDF form</center></h3>
+        <div className="row mt-4">
+          <ReactHTMLTableToExcel
+            id="test-table-xls-button"
+            className="download-table-xls-button btn btn-success mb-3"
+            table="table-to-xls"
+            filename="tablexls"
+            sheet="tablexls"
+            buttonText="Export Data to Excel Sheet" />
+          <button className="btn btn-success mb-3 ml-5"
+            onClick={generatePDF} >
+            Export Data to PDF and Print
+          </button>
+
+          <button className="btn btn-success mb-3 ml-5"
+            onClick={handleExportToPDF} >
+            Export Data to PDF
+          </button>
+
+          <div ref={conponentPDF} style={{ width: '100%' }}>
+            <table className="table" id="table-to-xls"
+              ref={tableRef}
+            >
+              <thead className="thead-dark">
+                <tr>
+                  <th>Id</th>
+                  <th>Name</th>
+                  <th>Gender</th>
+                  <th>Country</th>
+                  <th>Age</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                {excelSheet.map((value, index) => (
+                  <tr key={index}>
+                    <td>{value.id}</td>
+                    <td>{value.name}</td>
+                    <td>{value.gender}</td>
+                    <td>{value.country}</td>
+                    <td>{value.age}</td>
+                    <td>{value.date}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      {/* download ExcelSheet part ends */}
+
+      {/* download pdf part start */}
+      {/* <div className="container mt-5 pt-5">
+        <h3 className="mt-3 text-success">
+          <center>Export React Table Data into PDF</center>
+        </h3>
+        <div className="row mt-4">
+          <button className="btn btn-success mb-3" onClick={handleExportToPDF}>
+            Export Data to PDF
+          </button>
+          <table className="table" ref={tableRef}>
+            <thead className="thead-dark">
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Country</th>
+                <th>Age</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {excelSheet.map((value, index) => (
+                <tr key={index}>
+                  <td>{value.id}</td>
+                  <td>{value.name}</td>
+                  <td>{value.gender}</td>
+                  <td>{value.country}</td>
+                  <td>{value.age}</td>
+                  <td>{value.date}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div> */}
+      {/* download pdf part ends */}
     </div>
   );
 };

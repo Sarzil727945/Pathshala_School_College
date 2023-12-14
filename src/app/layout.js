@@ -1,28 +1,54 @@
-import Script from 'next/script'
+'use client'
 import './globals.css'
-import { Inter } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+import {
+  QueryClient,
+  QueryClientProvider,
 
-export const metadata = {
-  title: 'Pathshala School & College',
-  description: 'Pathshala School & College',
-  icons: {
-    icon: ['../../public/favicon.jpg?v=4']
-  }
-}
+} from '@tanstack/react-query'
+
+import { Toaster } from 'react-hot-toast'
+
+import { useState } from 'react'
+import { useEffect } from 'react'
+
+
+const queryClient = new QueryClient()
+
 
 export default function RootLayout({ children }) {
+
+ 
+const [categories, setCategories] = useState([])
+const [css, setCss] = useState([])
+
+
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/admin_panel_settings`)
+      .then(Response => Response.json())
+      .then(data => setCategories(data))
+  }, [])
+  console.log(categories)
+
+
+
+  const filteredCategories = categories.filter(category => category.status === 1);
+  console.log(filteredCategories[0], 'filteredCategories[0]?.admin_template')
+
   return (
     <html lang="en">
       <head>
-        <link rel="shortcut icon" href="/favicon.jpg" />
+        <link rel="stylesheet" href={`http://192.168.0.110:5003/get-css/${filteredCategories[0]?.admin_template}?v=${filteredCategories[0]?.version_code}`} />  
       </head>
+      <body >
+        <QueryClientProvider client={queryClient}>
+          <Toaster></Toaster>
 
-      <body className={inter.className}>
+            {children}
 
-        {children}
+        </QueryClientProvider>
       </body>
     </html>
+   
   )
 }

@@ -13,13 +13,34 @@ console.log(db, 'db')
 // http://localhost:5002/allUsers?email=abutaher01725@gmail.com
 const usersModel = require('../app/model/Admin/usersListModel')
 app.get('/user/allUser', usersModel.usersListAll)
-app.get('/user/userRole', usersModel.getUserRole)
 app.get('/user/allUser/:id', usersModel.usersListSingle)
-app.put('/updateUsers/:id', usersModel.UpdateSingleUser)
+app.get('/user/userRole', usersModel.getUserRole)
+app.get('/users', usersModel.usersBtnIcons)
+app.get('/users/add', usersModel.addColumn)
+app.get('/users/role_all', usersModel.userRoleAllList)
+app.post('/send-otp', usersModel.numberOtpSend)
+// app.post('/send-otp/email', usersModel.emailOtpSend)
+
+
+
 app.delete('/allUser/:id', usersModel.usersListDelete)
+app.put('/updateUsers/:id', usersModel.UpdateSingleUser)
+app.put('/update/verification_code/:id', usersModel.UpdateSingleUserMobileVerificationCode)
 app.get('/allUsers', usersModel.getSingleUsersListEmail)
 app.post('/login', usersModel.loginUserEmailPassword);
+app.post('/create-users', usersModel.CreateUserList);
 
+// app.get('/addColumn', usersModel.addColumn)
+
+
+// role
+app.get('/user/role', usersModel.usersRole);
+app.get('/user-role/btn', usersModel.usersRoleBtn);
+app.get('/page-group/display-name', usersModel.getPageGroupAndDisplayName);
+app.post('/user/user-role-create', usersModel.userRoleCreate);
+app.get('/user/user-role-single/:id', usersModel.getUserRoleIdSingle);
+app.put('/user/user-role/edit/:id', usersModel.userRoleUpdate);
+app.delete('/user/user-role/delete/:id', usersModel.deleteUserRoleIdSingle);
 
 
 
@@ -31,6 +52,15 @@ app.put('/updateAdminList/:id', adminPageList.UpdateAdminPageList)
 app.post('/admin/delete/', adminPageList.deleteAdminPageList)
 app.delete('/admin/allAdmin/:id', adminPageList.deleteSingleAdminPageList)
 
+// admin_panel_settings part start 
+app.get('/admin/admin_panel_settings', adminPageList.getAllAdminPanelSettingsList)
+app.get('/admin/admin_panel_settings/:id', adminPageList.getSingleAdminPanelSettingsList)
+app.delete('/admin/admin_panel_settings/delete/:id', adminPageList.deleteAllAdminPanelSettingsList)
+// admin_panel_settings part end
+
+app.get('/admin/group-namesss', adminPageList.getPageGroupAndControllerNamesss)
+app.get('/admin/group-names-id', adminPageList.getPageGroupAndControllerNamesssId)
+app.get('/page-group/display-name/with-id', adminPageList.getPageGroupAndDisplayNameWithId)
 
 const smsSettings = require('../app/model/SMS/smsSettings')
 app.put('/smsSettings/:id', smsSettings.updateSmsSettings)

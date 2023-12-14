@@ -35,42 +35,48 @@ const excelSheet = {
       
 
     createExcelSheet: async (req, res) => {
-        try {
-          const {
-            name, gender, country, age, date
-          } = req.body;
-      
-          const insertQuery = `
-            INSERT INTO excel_sheet (name, gender, country, age, date)
-            VALUES (?, ?, ?, ?, ?);
-          `;
-      
-          const result = await new Promise((resolve, reject) => {
-            connection.query(
-              insertQuery,
-              [name, gender, country, age, date],
-              (error, result) => {
-                if (error) {
-                  reject(error);
-                } else {
-                  resolve(result);
-                }
+      try {
+        const {
+          name, gender, country, age, date
+        } = req.body;
+    
+        // Assuming date is in the format dd/mm/yyyy
+        const [day, month, year] = date.split('/').map(Number);
+        const dateObject = new Date(year, month - 1, day + 1);
+        const formattedDate = dateObject.toISOString().split('T')[0];
+    
+        const insertQuery = `
+          INSERT INTO excel_sheet (name, gender, country, age, date)
+          VALUES (?, ?, ?, ?, ?);
+        `;
+    
+        const result = await new Promise((resolve, reject) => {
+          connection.query(
+            insertQuery,
+            [name, gender, country, age, formattedDate], // Use formattedDate instead of date
+            (error, result) => {
+              if (error) {
+                reject(error);
+              } else {
+                resolve(result);
               }
-            );
-          });
-      
-          if (result.affectedRows > 0) {
-            console.log(result);
-            return res.send(result);
-          } else {
-            console.log('Insert failed');
-            return res.status(500).json({ message: 'Insert failed.' });
-          }
-        } catch (error) {
-          console.error(error);
-          res.status(500).json({ message: 'Internal Server Error' });
+            }
+          );
+        });
+    
+        if (result.affectedRows > 0) {
+          console.log(result);
+          return res.send(result);
+        } else {
+          console.log('Insert failed');
+          return res.status(500).json({ message: 'Insert failed.' });
         }
-      },
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal Server Error' });
+      }
+    },
+    
       
       
     updateExcelSheet: async (req, res) => {
@@ -114,25 +120,37 @@ const excelSheet = {
 
 
     getExcelSheet: async (req, res) => {
-        try {
-            const data = "select * from  excel_sheet";
-
-            connection.query(data, function (error, result) {
-                console.log(result)
-                if (!error) {
-                    res.send(result)
-                }
-
-                else {
-                    console.log(error)
-                }
-
-            })
-        }
-        catch (error) {
-            console.log(error)
-        }
+      try {
+        const dataQuery = "SELECT * FROM excel_sheet";
+    
+        connection.query(dataQuery, function (error, result) {
+          if (!error) {
+            const formattedResult = result.map((row) => {
+              const dateObject = new Date(row.date);
+              const day = dateObject.getDate().toString().padStart(2, '0');
+              const month = (dateObject.getMonth() + 1).toString().padStart(2, '0');
+              const year = dateObject.getFullYear().toString();
+    
+              const formattedDate = `${day}-${month}-${year}`;
+    
+              return {
+                ...row,
+                date: formattedDate,
+              };
+            });
+    
+            res.send(formattedResult);
+          } else {
+            console.log(error);
+            res.status(500).json({ message: 'Error fetching data.' });
+          }
+        });
+      } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Internal Server Error' });
+      }
     },
+    
 }
 
 module.exports = excelSheet
