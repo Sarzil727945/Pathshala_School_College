@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
 
  
 const [categories, setCategories] = useState([])
-const [css, setCss] = useState([])
+
 
 
   useEffect(() => {
