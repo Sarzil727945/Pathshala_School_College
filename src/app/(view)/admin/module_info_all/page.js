@@ -73,9 +73,7 @@ const AdminPageListA = ({ searchParams }) => {
 
     }
 
-    useEffect(() => {
-        getUsers();
-    }, [currentPage]);
+
 
     const getUsers = async () => {
         const url = `${process.env.NEXT_PUBLIC_API_URL}/Pagination/${currentPage}/${dataPerPage}`;
@@ -83,6 +81,9 @@ const AdminPageListA = ({ searchParams }) => {
         const data = await response.json();
         setPageUsers(data);
     };
+    useEffect(() => {
+        getUsers();
+    }, [currentPage]);
 
     const activePage = searchParams?.page ? parseInt(searchParams.page) : 1;
 
@@ -135,138 +136,138 @@ const AdminPageListA = ({ searchParams }) => {
 
             {
                 loading ? <>
-                    <Loader/>
+                    <Loader />
                 </> : <>
-                <div className=" mx-auto my-3">
-                <section className=" border  rounded mx-auto">
-                    <li className="list-group-item text-light  p-1 px-4" aria-current="true" style={{ background: '#4267b2' }}>
-                        <div className='d-flex justify-content-between'>
-                            <h5 className='mt-2'> Module Info List</h5>
-                            <button style={{ background: '#17a2b8' }} className='border-0 text-white shadow-sm rounded-1 rounded'><Link href='/Admin/module_info/module_info_create'>Module Info Create</Link></button>
-                        </div>
-                    </li>
-                    <Table responsive="lg">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Display Name</th>
-                                <th>Controller Name</th>
-                                <th>Page Group</th>
-                                <th>Options</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                pageUsers?.map((adminPageAll, index) =>
-                                    <tr key={adminPageAll.id} >
-                                        <td>
-
-                                            {((currentPage - 1) * 20) + (index + 1)}
-
-                                        </td>
-                                        <td>
-                                            <p className=" text-sm">
-                                                {adminPageAll.display_name}
-                                            </p>
-                                        </td>
-
-                                        <td>
-                                            <p className=" text-sm">
-                                                {adminPageAll.controller_name}
-                                            </p>
-                                        </td>
-
-                                        <td>
-                                            <p className=" text-sm">
-                                                {adminPageAll.page_group}
-                                            </p>
-                                        </td>
-                                        <td>
-                                            <div className="flex items-center">
-                                                {
-                                                    editIcon[index]?.map((e, i) =>
-                                                        <Link key={e?.id} href={`/Admin/module_info/module_info_edit/${adminPageAll.id}?page_group=${adminPageAll.page_group}`}>
-                                                            <button
-                                                                title='Edit'
-                                                                style={{ width: "35px ", height: '30px', marginLeft: '2px' }}
-                                                                className={e?.btn}
-                                                            >
-                                                                <div>
-                                                                    <span
-                                                                        dangerouslySetInnerHTML={{ __html: e?.icon }}
-                                                                    ></span>
-                                                                </div>
-
-                                                            </button>
-                                                        </Link>
-
-                                                    )
-                                                }
-                                                {
-                                                    copyIcon[index]?.map((c, i) =>
-                                                        <Link key={c?.id} href={`/Admin/module_info/module_info_copy/${adminPageAll.id}?page_group=${adminPageAll.page_group}`}>
-                                                            <button
-                                                                title='Copy' style={{ width: "35px ", height: '30px', marginLeft: '2px' }}
-                                                                className={c?.btn}
-                                                            >
-                                                                <div>
-                                                                    <span
-                                                                        dangerouslySetInnerHTML={{ __html: c?.icon }}
-                                                                    ></span>
-                                                                </div>
-
-                                                            </button>
-                                                        </Link>
-
-                                                    )
-                                                }
-                                                {
-                                                    deleteIcon[index]?.map((d, i) =>
-                                                        <button
-                                                            key={d?.id}
-                                                            title='Delete'
-                                                            onClick={() => handleDelete(adminPageAll.id)}
-                                                            style={{ width: "35px ", height: '30px', marginLeft: '2px' }}
-                                                            className={d?.btn}
-                                                        >
-                                                            <div>
-                                                                <span
-                                                                    dangerouslySetInnerHTML={{ __html: d?.icon }}
-                                                                ></span>
-                                                            </div>
-
-                                                        </button>
-
-                                                    )
-                                                }
-                                            </div>
-                                        </td>
+                    <div className=" mx-auto my-3">
+                        <section className=" border  rounded mx-auto">
+                            <li className="list-group-item text-light  p-1 px-4" aria-current="true" style={{ background: '#4267b2' }}>
+                                <div className='d-flex justify-content-between'>
+                                    <h5 className='mt-2'> Module Info List</h5>
+                                    <button style={{ background: '#17a2b8' }} className='border-0 text-white shadow-sm rounded-1 rounded'><Link href='/Admin/module_info/module_info_create'>Module Info Create</Link></button>
+                                </div>
+                            </li>
+                            <Table responsive="lg">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Display Name</th>
+                                        <th>Controller Name</th>
+                                        <th>Page Group</th>
+                                        <th>Options</th>
                                     </tr>
-                                )
-                            }
+                                </thead>
+                                <tbody>
+                                    {
+                                        pageUsers?.map((adminPageAll, index) =>
+                                            <tr key={adminPageAll.id} >
+                                                <td>
+
+                                                    {((currentPage - 1) * 20) + (index + 1)}
+
+                                                </td>
+                                                <td>
+                                                    <p className=" text-sm">
+                                                        {adminPageAll.display_name}
+                                                    </p>
+                                                </td>
+
+                                                <td>
+                                                    <p className=" text-sm">
+                                                        {adminPageAll.controller_name}
+                                                    </p>
+                                                </td>
+
+                                                <td>
+                                                    <p className=" text-sm">
+                                                        {adminPageAll.page_group}
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <div className="flex items-center">
+                                                        {
+                                                            editIcon[index]?.map((e, i) =>
+                                                                <Link key={e?.id} href={`/Admin/module_info/module_info_edit/${adminPageAll.id}?page_group=${adminPageAll.page_group}`}>
+                                                                    <button
+                                                                        title='Edit'
+                                                                        style={{ width: "35px ", height: '30px', marginLeft: '2px' }}
+                                                                        className={e?.btn}
+                                                                    >
+                                                                        <div>
+                                                                            <span
+                                                                                dangerouslySetInnerHTML={{ __html: e?.icon }}
+                                                                            ></span>
+                                                                        </div>
+
+                                                                    </button>
+                                                                </Link>
+
+                                                            )
+                                                        }
+                                                        {
+                                                            copyIcon[index]?.map((c, i) =>
+                                                                <Link key={c?.id} href={`/Admin/module_info/module_info_copy/${adminPageAll.id}?page_group=${adminPageAll.page_group}`}>
+                                                                    <button
+                                                                        title='Copy' style={{ width: "35px ", height: '30px', marginLeft: '2px' }}
+                                                                        className={c?.btn}
+                                                                    >
+                                                                        <div>
+                                                                            <span
+                                                                                dangerouslySetInnerHTML={{ __html: c?.icon }}
+                                                                            ></span>
+                                                                        </div>
+
+                                                                    </button>
+                                                                </Link>
+
+                                                            )
+                                                        }
+                                                        {
+                                                            deleteIcon[index]?.map((d, i) =>
+                                                                <button
+                                                                    key={d?.id}
+                                                                    title='Delete'
+                                                                    onClick={() => handleDelete(adminPageAll.id)}
+                                                                    style={{ width: "35px ", height: '30px', marginLeft: '2px' }}
+                                                                    className={d?.btn}
+                                                                >
+                                                                    <div>
+                                                                        <span
+                                                                            dangerouslySetInnerHTML={{ __html: d?.icon }}
+                                                                        ></span>
+                                                                    </div>
+
+                                                                </button>
+
+                                                            )
+                                                        }
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        )
+                                    }
 
 
-                            {
-                                loading && <tr className='text-center'>
-                                    <td colSpan='100%' className='my-5 py-5 border-bottom-0 '>
-                                        <div className=' my-5 py-5 text-primary'>
-                                            <FontAwesomeIcon style={{
-                                                height: '40px',
-                                                width: '40px',
-                                            }} icon={faSpinner} spin />
-                                        </div>
+                                    {
+                                        loading && <tr className='text-center'>
+                                            <td colSpan='100%' className='my-5 py-5 border-bottom-0 '>
+                                                <div className=' my-5 py-5 text-primary'>
+                                                    <FontAwesomeIcon style={{
+                                                        height: '40px',
+                                                        width: '40px',
+                                                    }} icon={faSpinner} spin />
+                                                </div>
 
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </Table>
-                </section>
-            </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </Table>
+                        </section>
+                    </div>
                 </>
             }
 
-            
+
 
             <div className=" my-4 pb-5">
                 <Pagination pageNumber={pageNumber} activePage={activePage} currentPage={currentPage} totalPages={totalPages} totalData={totalData} />

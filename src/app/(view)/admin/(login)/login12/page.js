@@ -4,6 +4,7 @@ import './login12.css'
 import Link from 'next/link';
 import { Toaster } from 'react-hot-toast';
 import handleLogin from '../auth';
+import Image from 'next/image';
 
 
 const Login12 = () => {
@@ -38,7 +39,7 @@ const Login12 = () => {
                     <form method="post" autoComplete="off" onSubmit={handleLogin}>
                         <p style={{ textAlign: 'center' }}>
                             <a href="https://atik.urbanitsolution.com/">
-                                <img
+                                <Image
                                     src="https://atik.urbanitsolution.com/files/logo/thumbnail/7632b474c6d5b78e3f6233a87461bf623f453c67.jpeg"
                                     alt="logo"
                                 />

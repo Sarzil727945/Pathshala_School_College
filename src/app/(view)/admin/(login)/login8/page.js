@@ -2,6 +2,7 @@
 import './login8.css'
 import { Toaster } from 'react-hot-toast';
 import handleLogin from '../auth';
+import Image from 'next/image';
 
 const Login8 = () => {
     return (
@@ -18,7 +19,7 @@ const Login8 = () => {
 
             <div className="form">
                 <div className="thumbnail">
-                    <img src="https://atik.urbanitsolution.com/files/logo/thumbnail/7632b474c6d5b78e3f6233a87461bf623f453c67.jpeg" />
+                    <Image src="https://atik.urbanitsolution.com/files/logo/thumbnail/7632b474c6d5b78e3f6233a87461bf623f453c67.jpeg" />
                 </div>
                 <div className="row">
                     <div className="col-sm-12 col-md-12 ">

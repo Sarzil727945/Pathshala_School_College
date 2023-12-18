@@ -8,6 +8,7 @@ import { faBell, faCog, faCommentDots } from '@fortawesome/free-solid-svg-icons'
 import '../admin_panel_settings_create/adminPanel.css'
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import Image from 'next/image';
 
 
 
@@ -1223,7 +1224,7 @@ const AdminSettingsCopy = ({ id }) => {
 
                                             <div className='d-flex gap-3 mt-3'>
                                                 <div >
-                                                    <img src="https://atik.urbanitsolution.com/files/logo/thumbnail/7632b474c6d5b78e3f6233a87461bf623f453c67.jpeg" className="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""
+                                                    <Image src="https://atik.urbanitsolution.com/files/logo/thumbnail/7632b474c6d5b78e3f6233a87461bf623f453c67.jpeg" className="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""
                                                         width='40'
                                                     />
                                                 </div>
@@ -2577,7 +2578,7 @@ const AdminSettingsCopy = ({ id }) => {
                                                             {contentBgImage ?
 
                                                                 <>
-                                                                    <img className="w-100"
+                                                                    <Image className="w-100"
                                                                         src={URL.createObjectURL(contentBgImage)}
                                                                         alt="Uploaded File" />
                                                                     <button
@@ -2789,7 +2790,7 @@ const AdminSettingsCopy = ({ id }) => {
 
                                                             {bodyBgImage ?
                                                                 <>
-                                                                    <img className="w-100" src={URL.createObjectURL(bodyBgImage)} alt="Uploaded File" />
+                                                                    <Image className="w-100" src={URL.createObjectURL(bodyBgImage)} alt="Uploaded File" />
                                                                     <button
                                                                         onClick={handleRemoveBodyBgImage}
                                                                         type="button"
@@ -2855,7 +2856,7 @@ const AdminSettingsCopy = ({ id }) => {
 
                                             <div className='d-flex gap-3 mt-3'>
                                                 <div >
-                                                    <img src="https://atik.urbanitsolution.com/files/logo/thumbnail/7632b474c6d5b78e3f6233a87461bf623f453c67.jpeg" className="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""
+                                                    <Image src="https://atik.urbanitsolution.com/files/logo/thumbnail/7632b474c6d5b78e3f6233a87461bf623f453c67.jpeg" className="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""
                                                         width='40'
                                                     />
                                                 </div>
@@ -3086,7 +3087,7 @@ const AdminSettingsCopy = ({ id }) => {
                                                             {selectedFile ?
 
                                                                 <>
-                                                                    <img className="w-100"
+                                                                    <Image className="w-100"
                                                                         src={URL.createObjectURL(selectedFile)}
                                                                         alt="Uploaded File" />
                                                                     <button
@@ -3203,7 +3204,7 @@ const AdminSettingsCopy = ({ id }) => {
 
                                             <div className='d-flex gap-3 mt-3'>
                                                 <div >
-                                                    <img src="https://atik.urbanitsolution.com/files/logo/thumbnail/7632b474c6d5b78e3f6233a87461bf623f453c67.jpeg" className="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""
+                                                    <Image src="https://atik.urbanitsolution.com/files/logo/thumbnail/7632b474c6d5b78e3f6233a87461bf623f453c67.jpeg" className="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""
                                                         width='40'
                                                     />
                                                 </div>

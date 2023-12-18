@@ -191,7 +191,7 @@ const AdminSidebar = ({ child }) => {
   console.log(sideNav)
 
   const filteredCategories = sideNav.filter(category => category.status === 1);
-  console.log(filteredCategories[0]?.admin_template, 'filteredCategories[0]?.admin_template')
+
 
   return (
 
@@ -386,10 +386,10 @@ const AdminSidebar = ({ child }) => {
 
           <div id="content " className='w-100 ' >
             <AdminHeader toggleSidebar={toggleSidebar}></AdminHeader>
-            <div className='sticky-top' >
+            <div >
               {
                 pageGroupNav &&
-                <nav className="navbar  navbar-expand-lg navbar-light bg-light sub_header_background_color">
+                <nav className="navbar sticky-top navbar-expand-lg navbar-light bg-light sub_header_background_color">
                   <div className="container-fluid" >
                     <Link className="navbar-brand  text-primary" href="">{formatString(page_group)}</Link>
                     <button className="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#customNavbarCollapse" aria-controls="customNavbarCollapse" aria-expanded="false" aria-label="Toggle navigation">

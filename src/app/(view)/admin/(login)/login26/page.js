@@ -5,6 +5,7 @@ import './login26.css'
 import handleLogin from '../auth';
 import { Toaster } from 'react-hot-toast';
 import Head from 'next/head';
+import Image from 'next/image';
 
 
 const Login26 = () => {
@@ -34,7 +35,7 @@ const Login26 = () => {
                                             <div className="row">
                                                 <div className="col">
                                                     <a href="/" className="text-center">
-                                                        <img src="https://atik.urbanitsolution.com/files/logo/thumbnail/7632b474c6d5b78e3f6233a87461bf623f453c67.jpeg" alt="logo" />
+                                                        <Image src="https://atik.urbanitsolution.com/files/logo/thumbnail/7632b474c6d5b78e3f6233a87461bf623f453c67.jpeg" alt="logo" />
                                                     </a>
                                                     <h2 className="text-white font-weight-bold">Pathshala School & College</h2>
                                                     <h3 className="text-white mb-0"><span>School Management System</span></h3>

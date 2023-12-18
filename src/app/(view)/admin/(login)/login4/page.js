@@ -3,6 +3,7 @@
 import styles from './login4.css';
 import { Toaster } from 'react-hot-toast';
 import handleLogin from '../auth';
+import Image from 'next/image';
 
 const Login4 = () => {
 
@@ -11,7 +12,7 @@ const Login4 = () => {
       <div className="container px-2">
         <div className="profile profile--open animate__animated animate__bounce">
           <button className="profile__avatar" id="">
-            <img
+            <Image
               src="https://atik.urbanitsolution.com/files/logo/thumbnail/7632b474c6d5b78e3f6233a87461bf623f453c67.jpeg"
               alt="Avatar"
             />

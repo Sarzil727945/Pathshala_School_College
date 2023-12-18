@@ -4,6 +4,7 @@ import './login7.css'
 import { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import handleLogin from '../auth';
+import Image from 'next/image';
 
 const Login7 = () => {
     const [bubbles, setBubbles] = useState([]);
@@ -79,7 +80,7 @@ const Login7 = () => {
                             <div className="col-12 col-md-8 col-lg-7 col-xl-5 text-center">
                                 <form method="post" autoComplete="off" onSubmit={handleLogin}>
                                     <a href="https://atik.urbanitsolution.com/" className="text-center">
-                                        <img src="https://atik.urbanitsolution.com/files/logo/thumbnail/7632b474c6d5b78e3f6233a87461bf623f453c67.jpeg" alt="logo" />
+                                        <Image src="https://atik.urbanitsolution.com/files/logo/thumbnail/7632b474c6d5b78e3f6233a87461bf623f453c67.jpeg" alt="logo" />
                                     </a>
 
                                     <h2 className="text-white font-weight-bold">Pathshala School &amp; College</h2>
