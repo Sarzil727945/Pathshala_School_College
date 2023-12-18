@@ -19,8 +19,8 @@ app.get('/users', usersModel.usersBtnIcons)
 app.get('/users/add', usersModel.addColumn)
 app.get('/users/role_all', usersModel.userRoleAllList)
 app.post('/send-otp', usersModel.numberOtpSend)
+app.post('/reset-password/:id', usersModel.UpdateUserPassword);
 // app.post('/send-otp/email', usersModel.emailOtpSend)
-
 
 
 app.delete('/allUser/:id', usersModel.usersListDelete)
@@ -28,6 +28,7 @@ app.put('/updateUsers/:id', usersModel.UpdateSingleUser)
 app.put('/update/verification_code/:id', usersModel.UpdateSingleUserMobileVerificationCode)
 app.get('/allUsers', usersModel.getSingleUsersListEmail)
 app.post('/login', usersModel.loginUserEmailPassword);
+app.put('/updateLogin/:email', usersModel.updateLogin);
 app.post('/create-users', usersModel.CreateUserList);
 
 // app.get('/addColumn', usersModel.addColumn)

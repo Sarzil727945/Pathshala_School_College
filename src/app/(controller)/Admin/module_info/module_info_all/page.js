@@ -1,5 +1,5 @@
 import React from 'react';
-import AdminPageListA from '@/app/(view)/admin/admin_page_list_all/page';
+import AdminPageListA from '@/app/(view)/admin/module_info_all/page';
 
 
 const AdminPageListAll = ({searchParams}) => {

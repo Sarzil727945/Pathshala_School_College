@@ -10,7 +10,7 @@ import { getAllAdminData } from '@/api/adminPage';
 import Pagination from "@/common/Pagination";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import Loader from "@/api/Loader";
+import Loader from "@/common/Loader";
 
 
 
@@ -141,8 +141,8 @@ const AdminPageListA = ({ searchParams }) => {
                 <section className=" border  rounded mx-auto">
                     <li className="list-group-item text-light  p-1 px-4" aria-current="true" style={{ background: '#4267b2' }}>
                         <div className='d-flex justify-content-between'>
-                            <h5 className='mt-2'> Admin Page List List</h5>
-                            <button style={{ background: '#17a2b8' }} className='border-0 text-white shadow-sm rounded-1 rounded'><Link href='/Admin/admin_page_list/admin_page_list_create'>Create Admin Page List</Link></button>
+                            <h5 className='mt-2'> Module Info List</h5>
+                            <button style={{ background: '#17a2b8' }} className='border-0 text-white shadow-sm rounded-1 rounded'><Link href='/Admin/module_info/module_info_create'>Module Info Create</Link></button>
                         </div>
                     </li>
                     <Table responsive="lg">
@@ -185,7 +185,7 @@ const AdminPageListA = ({ searchParams }) => {
                                             <div className="flex items-center">
                                                 {
                                                     editIcon[index]?.map((e, i) =>
-                                                        <Link key={e?.id} href={`/Admin/admin_page_list/admin_page_list_edit/${adminPageAll.id}?page_group=${adminPageAll.page_group}`}>
+                                                        <Link key={e?.id} href={`/Admin/module_info/module_info_edit/${adminPageAll.id}?page_group=${adminPageAll.page_group}`}>
                                                             <button
                                                                 title='Edit'
                                                                 style={{ width: "35px ", height: '30px', marginLeft: '2px' }}
@@ -204,7 +204,7 @@ const AdminPageListA = ({ searchParams }) => {
                                                 }
                                                 {
                                                     copyIcon[index]?.map((c, i) =>
-                                                        <Link key={c?.id} href={`/Admin/admin_page_list/admin_page_list_copy/${adminPageAll.id}?page_group=${adminPageAll.page_group}`}>
+                                                        <Link key={c?.id} href={`/Admin/module_info/module_info_copy/${adminPageAll.id}?page_group=${adminPageAll.page_group}`}>
                                                             <button
                                                                 title='Copy' style={{ width: "35px ", height: '30px', marginLeft: '2px' }}
                                                                 className={c?.btn}

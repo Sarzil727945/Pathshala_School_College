@@ -1,4 +1,4 @@
-import AdminPageListC from '@/app/(view)/admin/admin_page_list_create/page';
+import AdminPageListC from '@/app/(view)/admin/module_info_create/page';
 
 const AdminPageListCreate = () => {
     return (

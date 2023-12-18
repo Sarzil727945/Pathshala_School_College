@@ -39,39 +39,8 @@ const usersListModel = {
     }
   },
 
-  // CreateUserList: async (req, res) => {
-  //     try {
-  //         const { full_name, email, password, mobile, role_name } = req.body;
 
-  //         if (!full_name || !password || !email || !mobile || !role_name) {
-  //           return res.status(400).json({ error: 'All fields are required' });
-  //         }
-
-  //         // Encrypt the password using SHA-1 (not recommended for security)
-  //         const hashedPassword = sha1(password);
-
-  //         const newUser = {
-  //           full_name,
-  //           email,
-  //           password: hashedPassword,
-  //           mobile,
-  //           role_name,
-  //         };
-
-  //         connection.query('INSERT INTO users SET ?', newUser, (err, results) => {
-  //           if (err) {
-  //             console.error('Error inserting user:', err);
-  //             return res.status(500).json({ error: 'Internal server error' });
-  //           }
-
-  //           console.log('User inserted successfully');
-  //           res.status(201).json({ message: 'User created successfully' });
-  //         });
-  //       } catch (error) {
-  //         console.log(error);
-  //         res.status(500).json({ error: 'Internal server error' });
-  //       }
-  // },
+  
   CreateUserList: async (req, res) => {
     try {
       const { full_name, email, password, mobile, role_name, OTP } = req.body;
@@ -123,24 +92,7 @@ const usersListModel = {
     }
   },
 
-  // CreateUserList: async (req, res) => {
-  //     try {
-  //         const { full_name, email, password, mobile, role_name, status, created_date, modified_date, pass_session, pass_time, pass_duration, created_by, dob, gender, age, religion, photo2, finger_print_id, unique_id, blood_group_id, signature_image, pass_code, is_online, photo } = req.body;
-  //         const query = 'INSERT INTO users (full_name , email, password , mobile, role_name, status , created_date, modified_date, pass_session, pass_time, pass_duration, created_by, dob, gender, age, religion, photo2, finger_print_id, unique_id, blood_group_id, signature_image, pass_code, is_online, photo) VALUES (?, ?, ?, ?, ?, ?, ?, ? , ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-  //         connection.query(query, [full_name, email, password, mobile, role_name, status, created_date, modified_date, pass_session, pass_time, pass_duration, created_by, dob, gender, age, religion, photo2, finger_print_id, unique_id, blood_group_id, signature_image, pass_code, is_online, photo], (error, result) => {
-  //             if (!error) {
-  //                 console.log(result);
-  //                 return res.send(result);
-  //             } else {
-  //                 console.log(error);
-  //                 return res.status(500).json({ message: 'Failed to add product.' });
-  //             }
-  //         });
-  //     }
-  //     catch (error) {
-  //         console.log(error)
-  //     }
-  // },
+
 
   usersListSingle: async (req, res) => {
     try {
@@ -159,6 +111,7 @@ const usersListModel = {
       console.log(error)
     }
   },
+
   getUserRole: async (req, res) => {
     try {
         const data = "select * from user_role";
@@ -220,98 +173,47 @@ const usersListModel = {
     }
   },
 
-// UpdateUserPassword: async (req, res) => {
-//   try {
-//     const { email, currentPassword, newPassword } = req.body;
 
-//     // Hash the current and new passwords using SHA-1
-//     const hashedCurrentPassword = sha1(currentPassword);
-//     const hashedNewPassword = sha1(newPassword);
-
-//     // Check if the current password matches the stored password in the database
-//     const checkPasswordSql = 'SELECT * FROM users WHERE email = ? AND password = ?';
-//     const checkPasswordValues = [email, hashedCurrentPassword];
-
-//     connection.query(checkPasswordSql, checkPasswordValues, (checkPasswordErr, checkPasswordResult) => {
-//       if (checkPasswordErr) {
-//         console.error(checkPasswordErr);
-//         res.status(500).json({ message: 'Password update failed' });
-//       } else if (checkPasswordResult.length === 0) {
-//         res.status(401).json({ message: 'Current password is incorrect' });
-//       } else {
-//         // Update the password in the database
-//         const updatePasswordSql = 'UPDATE users SET password = ? WHERE email = ?';
-//         const updatePasswordValues = [hashedNewPassword, email];
-
-//         connection.query(updatePasswordSql, updatePasswordValues, (updatePasswordErr, updatePasswordResult) => {
-//           if (updatePasswordErr) {
-//             console.error(updatePasswordErr);
-//             res.status(500).json({ message: 'Password update failed' });
-//           } else {
-//             res.status(200).json({ message: 'Password updated successfully' });
-//           }
-//         });
-//       }
-//     });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// },
 
 
 UpdateUserPassword: async (req, res) => {
-  try {
-    const { email, currentPassword, newPassword } = req.body;
+  const { currentPassword, newPassword } = req.body;
 
-    // Hash the current and new passwords using SHA-1
-    const hashedCurrentPassword = sha1(currentPassword);
-    const hashedNewPassword = sha1(newPassword);
+  // Hash the new password
+  const hashedPassword = crypto.createHash('sha1').update(newPassword).digest('hex');
 
-    // Check if the current password matches the stored password in the database
-    const checkPasswordSql = 'SELECT * FROM users WHERE email = ?';
-    const checkPasswordValues = [email];
+  // Check the current password in the database
+  const checkPasswordQuery = 'SELECT password FROM users WHERE id = ?';
 
-    connection.query(checkPasswordSql, checkPasswordValues, (checkPasswordErr, checkPasswordResult) => {
-      if (checkPasswordErr) {
-        console.error(checkPasswordErr);
-        res.status(500).json({ message: 'Password update failed' });
+  connection.query(checkPasswordQuery, [req.params.id], (checkError, checkResults) => {
+    if (checkError) {
+      console.log('Error checking current password:', checkError);
+      res.status(500).send('Internal Server Error');
+      return;
+    }
+
+    // Check if the current password matches the one in the database
+    const storedPassword = checkResults[0].password;
+    const hashedPasswords = sha1(currentPassword);
+    if (storedPassword !== hashedPasswords) {
+      console.log('Current password does not match');
+      res.status(400).send('Current password is incorrect');
+      return;
+    }
+
+    // Update the password in the database
+    const updatePasswordQuery = 'UPDATE users SET password = ? WHERE id = ?';
+
+    connection.query(updatePasswordQuery, [hashedPassword, req.params.id], (updateError, updateResults) => {
+      if (updateError) {
+        console.log('Error resetting password:', updateError);
+        res.status(500).send('Internal Server Error');
       } else {
-        console.log('Check Password Result:', checkPasswordResult);
-
-        if (checkPasswordResult.length === 0) {
-          console.log('User not found:', email);
-          res.status(401).json({ message: 'User not found' });
-        } else {
-          const storedPassword = checkPasswordResult[0].password;
-
-          console.log('Stored Password:', storedPassword);
-          console.log('Input Password:', hashedCurrentPassword);
-
-          // Check if the hashed current password matches the stored password
-          if (storedPassword === hashedCurrentPassword) {
-            // Update the password in the database
-            const updatePasswordSql = 'UPDATE users SET password = ? WHERE email = ?';
-            const updatePasswordValues = [hashedNewPassword, email];
-
-            connection.query(updatePasswordSql, updatePasswordValues, (updatePasswordErr, updatePasswordResult) => {
-              if (updatePasswordErr) {
-                console.error(updatePasswordErr);
-                res.status(500).json({ message: 'Password update failed' });
-              } else {
-                res.status(200).json({ message: 'Password updated successfully' });
-              }
-            });
-          } else {
-            console.log('Current password is incorrect. Input:', hashedCurrentPassword, 'Database:', storedPassword);
-            res.status(401).json({ message: 'Current password is incorrect' });
-          }
-        }
+        console.log('Password reset successfully');
+        res.status(200).send('Password reset successfully');
       }
     });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
+  });
 },
 
 
@@ -970,6 +872,26 @@ UpdateUserPassword: async (req, res) => {
     });
   },
 
+  updateLogin: async (req, res) => {
+    try {
+      const { email, password } = req.body;
+      const query = 'UPDATE users SET email = ?, password = ?  WHERE email = ? ';
+      connection.query(query, [ email, password, req.params.email], (error, result) => {
+        if (!error && result.affectedRows > 0) {
+          console.log(result);
+          return res.send(result);
+        } else {
+          console.log(error || 'Product not found');
+          return res.status(404).json({ message: 'Product not found.' });
+        }
+      });
+    }
+    catch (error) {
+      console.log(error)
+    }
+  },
+
+
 
   UpdateSingleUser: async (req, res) => {
     try {
@@ -1031,7 +953,7 @@ UpdateUserPassword: async (req, res) => {
   usersBtnIcons: async (req, res) => {
     try {
       const controllerName = 'users';
-      const query = 'SELECT * FROM admin_page_list WHERE controller_name = ?';
+      const query = 'SELECT * FROM module_info WHERE controller_name = ?';
 
       connection.query(query, [controllerName], (error, results) => {
         if (error) {
@@ -1149,7 +1071,7 @@ UpdateUserPassword: async (req, res) => {
   usersRoleBtn: async (req, res) => {
     try {
       const controllerName = 'user_role';
-      const query = 'SELECT * FROM admin_page_list WHERE controller_name = ?';
+      const query = 'SELECT * FROM module_info WHERE controller_name = ?';
 
       connection.query(query, [controllerName], (error, results) => {
         if (error) {
@@ -1170,7 +1092,7 @@ UpdateUserPassword: async (req, res) => {
     const query = `
           SELECT ap.id AS page_group_id, ap.page_group, ap.controller_name, GROUP_CONCAT(DISTINCT ap.display_name) AS display_names,
           GROUP_CONCAT(DISTINCT ap.method_name) AS method_names
-          FROM admin_page_list ap
+          FROM module_info ap
           
           GROUP BY ap.page_group, ap.controller_name
           HAVING ap.page_group IS NOT NULL AND ap.page_group != '';

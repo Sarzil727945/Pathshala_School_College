@@ -101,7 +101,7 @@ export default function AdminPageListC() {
                             confirmButtonText: 'Ok'
                         })
                     }
-                    router.push('/Admin/admin_page_list/admin_page_list_all');
+                    router.push('/Admin/module_info/module_info_all');
                     // server data post exit 
                 })
           }
@@ -135,9 +135,9 @@ export default function AdminPageListC() {
                     <div className='mb-3'>
                         <li className="list-group-item text-light  p-1 px-4 " aria-current="true" style={{ background: '#4267b2' }}>
                             <div className='d-flex justify-content-between mb-0'>
-                                <h5 className='mt-2'> Create Admin Page List
+                                <h5 className='mt-2'> Module Info Create
                                 </h5>
-                                <button style={{ background: '#17a2b8' }} className='border-0 text-white shadow-sm rounded-1 rounded'><Link href={`/Admin/admin_page_list/admin_page_list_all`}>Back To Admin Page List List</Link></button>
+                                <button style={{ background: '#17a2b8' }} className='border-0 text-white shadow-sm rounded-1 rounded'><Link href={`/Admin/module_info/module_info_all`}>Back To Module Info List</Link></button>
                             </div>
                         </li>
                         <div className=" mx-auto px-4  ">
@@ -145,7 +145,7 @@ export default function AdminPageListC() {
                             <section className=" border  rounded mx-auto">
                                 <li className="list-group-item text-light  p-1 px-4" aria-current="true" style={{ background: '#4267b2' }}>
                                     <div className='d-flex justify-content-between'>
-                                        <h5 className='mt-2'> Admin Page List
+                                        <h5 className='mt-2'> Module Info
                                         </h5>
 
                                         <div

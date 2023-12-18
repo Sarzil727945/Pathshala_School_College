@@ -8,48 +8,10 @@ import { FaBars, FaTasks } from 'react-icons/fa';
 
 const AdminHeader = ({ toggleSidebar }) => {
 
-
-    // useEffect(() => {
-    //     const loadScript = (src, integrity, crossOrigin) => {
-    //         return new Promise((resolve, reject) => {
-    //             const script = document.createElement('script');
-    //             script.src = src;
-    //             script.integrity = integrity;
-    //             script.crossOrigin = crossOrigin;
-    //             script.defer = true;
-    //             script.onload = resolve;
-    //             script.onerror = reject;
-    //             document.body.appendChild(script);
-    //         });
-    //     };
-    
-    //     const loadScripts = async () => {
-    //         try {
-    //             await loadScript(
-    //                 'https://code.jquery.com/jquery-3.3.1.slim.min.js',
-    //                 'sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo',
-    //                 'anonymous'
-    //             );
-                
-    //             await loadScript(
-    //                 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js',
-    //                 'sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm',
-    //                 'anonymous'
-    //             );
-    //         } catch (error) {
-    //             console.error('Error loading scripts:', error);
-    //         }
-    //     };
-    
-    //     loadScripts();
-    // }, []);
-
-
     return (
         <nav className="navbar navbar-expand-lg header_background_color">
             <div className="container-fluid ">
                 <button type="button" onClick={toggleSidebar} id="sidebarCollapse" className="btn btn-info d-lg-none mr-lg-5">
-                    {/* <FaBars></FaBars> */}
 
                     <FaTasks></FaTasks>
                 </button>

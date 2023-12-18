@@ -1,6 +1,6 @@
 'use client'
 
-import AdminPageCopyAll from '@/app/(view)/admin/admin_page_list_copy/page';
+import AdminPageCopyAll from '@/app/(view)/admin/module_info_copy/page';
 import React, { useState } from 'react';
 
 const AdminPageCopy = ({ params }) => {

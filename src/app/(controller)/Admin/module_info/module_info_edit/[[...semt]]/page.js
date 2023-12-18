@@ -1,7 +1,7 @@
 'use client'
 
 import { getAllAdminData } from '@/api/adminPage';
-import AdminPageEditAll from '@/app/(view)/admin/admin_page_list_edit/page';
+import AdminPageEditAll from '@/app/(view)/admin/module_info_edit/page';
 import React, { useState } from 'react';
 
 const AdminPageEdit = ({ params }) => {

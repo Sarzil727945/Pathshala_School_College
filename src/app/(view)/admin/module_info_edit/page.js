@@ -6,15 +6,12 @@ import IconModal from '../../admin_layout/modal/iconModal/page';
 import Link from 'next/link';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/navigation';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import Loader from '@/api/Loader';
+import Loader from '@/common/Loader';
 
-const AdminPageCopyAll = ({ Id }) => {
-    const router = useRouter();
+const AdminPageEditAll = ({ Id, controllerName, pageGroup, controllerSort, pageGroupSort, controllerBg, controllerColor, props }) => {
     const [users, setUsers] = useState([]);
+    const router = useRouter();
     const [loading, setLoading] = useState(true);
-
 
     useEffect(() => {
         allAdminData();
@@ -27,24 +24,10 @@ const AdminPageCopyAll = ({ Id }) => {
         })
     };
 
-
     const selectAllData = [];
     const parentUser = users?.filter(user => user?.id === +Id);
-    selectAllData.push(...parentUser);
-
-    const pageGroupSame = users?.filter(user => user?.page_group === parentUser[0]?.page_group);
-
-
-    let maxMethodSort = pageGroupSame[0]?.method_sort
-
-    for (let index = 0; index < pageGroupSame.length; index++) {
-        const element = pageGroupSame[index].method_sort;
-        if (element > maxMethodSort) {
-            maxMethodSort = element
-        }
-    }
-
-    const methodSortValue = (+maxMethodSort) + 1
+    const childUser = users?.filter(user => user?.parent_id === +Id);
+    selectAllData.push(...parentUser, ...childUser);
 
 
     const menuType = [
@@ -102,35 +85,133 @@ const AdminPageCopyAll = ({ Id }) => {
             const page_group_sort = form?.page_group_sort?.value || form?.page_group_sort[index]?.value
             const method_sort = form?.method_sort?.value || form?.method_sort[index]?.value
             const controller_color = form?.controller_color?.value || form?.controller_color[index]?.value
-            const status = index
-            const controller_code = index
 
             const EditValue = {
-                display_name, controller_name, method_name, parent_id, menu_type, icon, btn, default_page, page_group, controller_bg, page_group_icon, controller_sort, page_group_sort, method_sort, controller_color, status, controller_code
+                display_name, controller_name, method_name, parent_id, menu_type, icon, btn, default_page, page_group, controller_bg, page_group_icon, controller_sort, page_group_sort, method_sort, controller_color
             }
             console.log(EditValue);
 
-            fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/copy`, {
-                method: 'POST',
+            fetch(`${process.env.NEXT_PUBLIC_API_URL}/updateAdminList/${selectAllData[index].id}`, {
+                method: 'PUT',
                 headers: {
                     'content-type': 'application/json'
                 },
                 body: JSON.stringify(EditValue)
             })
-                .then(res => res.json())
+                .then(Response => Response.json())
                 .then(data => {
-                    if (data.insertId) {
+                    console.log(data)
+
+                    if (data?.affectedRows) {
                         Swal.fire({
                             title: 'Success!',
-                            text: 'admin data post Successful !!',
+                            text: 'admin page list edit Successful !!',
                             icon: 'success',
                             confirmButtonText: 'Ok'
                         })
                     }
-                    router.push('/Admin/admin_page_list/admin_page_list_all');
-
+                    router.push('/Admin/module_info/module_info_all');
                 })
 
+        }
+    }
+
+
+    // controllerName
+    const [controllerNameV, setControllerNameV] = useState({
+        inputCNV: `${controllerName}`,
+    });
+
+    const handleCNVInputChange = (cnvId, cnvValue) => {
+        setControllerNameV((cnvPrevValues) => ({
+            ...cnvPrevValues,
+            [cnvId]: cnvValue,
+        }));
+    };
+
+
+    // pageGroup
+    const [pageGroupV, setPageGroupV] = useState({
+        inputPGV: `${pageGroup}`,
+    });
+
+    const handlePGVInputChange = (pgvId, pgvValue) => {
+        setPageGroupV((pgvPrevValues) => ({
+            ...pgvPrevValues,
+            [pgvId]: pgvValue,
+        }));
+    };
+
+
+    // ControllerSort
+    const [controllerSortV, setControllerSortV] = useState({
+        inputCS: `${controllerSort}`,
+    });
+
+    const handleCSInputChange = (csId, csValue) => {
+        setControllerSortV((csPrevValues) => ({
+            ...csPrevValues,
+            [csId]: csValue,
+        }));
+    };
+
+
+    // PageGroupSort
+    const [pageGroupSortV, setPageGroupSortV] = useState({
+        inputPGS: `${pageGroupSort}`,
+    });
+
+    const handlePGSInputChange = (pgsId, pgsValue) => {
+        setPageGroupSortV((pgsPrevValues) => ({
+            ...pgsPrevValues,
+            [pgsId]: pgsValue,
+        }));
+    };
+
+    // controllerBg
+    const [controllerBgV, setControllerBgV] = useState({
+        inputCBV: `${controllerBg}`,
+    });
+
+    const handleCBVInputChange = (cbvId, cbvValue) => {
+        setControllerBgV((cbvPrevValues) => ({
+            ...cbvPrevValues,
+            [cbvId]: cbvValue,
+        }));
+    };
+
+    // controllerColor
+    const [controllerColorV, setControllerColorV] = useState({
+        inputCCV: `${controllerColor}`,
+    });
+
+    const handleCCVInputChange = (ccvId, ccvValue) => {
+        setControllerColorV((ccvPrevValues) => ({
+            ...ccvPrevValues,
+            [ccvId]: ccvValue,
+        }));
+    };
+
+
+    // delete parts start
+    const handelDelete = (id) => {
+        const proceed = window.confirm('Are you sure you want to delete?');
+        if (proceed) {
+            fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/allAdmin/${id}`, {
+                method: 'DELETE',
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.affectedRows > 0) {
+                        Swal.fire({
+                            title: 'Delete!',
+                            text: 'User deleted successfully!',
+                            icon: 'success',
+                            confirmButtonText: 'Ok',
+                        });
+                    }
+                    allAdminData()
+                })
         }
     }
 
@@ -142,20 +223,39 @@ const AdminPageCopyAll = ({ Id }) => {
                 loading ? <>
                     <Loader />
                 </> : <>
-                    <div className=' px-3 mb-5'>
+                    <div className=' px-3'>
                         <div className="list-group-item text-light rounded  p-1 px-2" aria-current="true" style={{ background: '#4267b2' }}>
                             <div className='d-flex justify-content-between py-1 px-2'>
-                                <h5 className=' pt-2'> Edit Admin Page List
+                                <h5 className=' pt-2'> Module Info Edit
                                 </h5>
-                                <button style={{ background: '#17a2b8' }} className='border-0 text-white shadow-sm rounded-1 rounded'><Link href='/Admin/admin_page_list/admin_page_list_all'>Back To Admin Page List List</Link></button>
+                                <button style={{ background: '#17a2b8' }} className='border-0 text-white shadow-sm rounded-1 rounded'><Link href='/Admin/module_info/module_info_all'>Back To Module Info List</Link></button>
                             </div>
                         </div>
+                    </div>
+                    <div className=' px-4 mx-2'>
+                        <p style={{ backgroundColor: '#ffeeba', fontWeight: 'bold' }} className=' text-danger rounded p-3 mt-4'>(*) field required</p>
                     </div>
                     <form onSubmit={handelEditFrom}>
                         {
                             selectAllData.map((data, index) => (
                                 <div key={data.id}>
                                     <div >
+                                        <div className="w-100 px-4 pb-2 pt-3">
+                                            <Link href={`/Admin/module_info/module_info_copy/${data?.id}?page_group=${data.page_group}`} title="Copy" className="text-white btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top">
+                                                <i className="fas fa-copy"></i>
+                                            </Link>
+                                            <a
+
+                                                id="delete_module_info"
+                                                title="Delete"
+                                                className="text-white btn btn-danger btn-sm ml-1"
+                                                data-toggle="tooltip"
+                                                data-placement="top"
+                                                onClick={() => handelDelete(data?.id)}
+                                            >
+                                                <i className="fas fa-trash-alt"></i>
+                                            </a>
+                                        </div>
                                         <div className="row border-bottom pb-3  mx-4">
                                             <div className="col-md-4">
                                                 <div className="form-group row">
@@ -170,7 +270,8 @@ const AdminPageCopyAll = ({ Id }) => {
                                                             id="controller_name"
                                                             className="form-control form-control-sm required controller_name"
                                                             name="controller_name"
-                                                            defaultValue={data.controller_name}
+                                                            value={controllerNameV.inputCNV}
+                                                            onChange={(cnv) => handleCNVInputChange('inputCNV', cnv.target.value)}
                                                         />
 
                                                     </div>
@@ -188,17 +289,17 @@ const AdminPageCopyAll = ({ Id }) => {
                                                             {
                                                                 (data?.menu_type === 0) ? <>
                                                                     {menuType[0].map((md, index) =>
-                                                                        <option key={index} defaultValue={index}>{md.mt}</option>
+                                                                        <option key={index} value='0'>{md.mt}</option>
                                                                     )}
                                                                 </> :
                                                                     (data?.menu_type === 1) ? <>
                                                                         {menuType[1].map((md, index) =>
-                                                                            <option key={index} defaultValue={index}>{md.mt}</option>
+                                                                            <option key={index} value='1'>{md.mt}</option>
                                                                         )}
                                                                     </> :
                                                                         <>
                                                                             {menuType[2].map((md, index) =>
-                                                                                <option key={index} defaultValue={index}>{md.mt}</option>
+                                                                                <option key={index} value='2'>{md.mt}</option>
                                                                             )}
                                                                         </>
                                                             }
@@ -216,7 +317,7 @@ const AdminPageCopyAll = ({ Id }) => {
                                                                 <IconModal
                                                                     names="icon"
                                                                     index={index}
-                                                                    Icon={data.icon}
+                                                                    Icon={data?.icon}
                                                                 ></IconModal>
 
                                                             </div>
@@ -250,7 +351,8 @@ const AdminPageCopyAll = ({ Id }) => {
                                                             id="page_group"
                                                             className="form-control form-control-sm page_group"
                                                             name="page_group"
-                                                            defaultValue={data.page_group}
+                                                            value={pageGroupV.inputPGV}
+                                                            onChange={(pgv) => handlePGVInputChange('inputPGV', pgv.target.value)}
                                                         />
                                                     </div>
                                                     <label className="col-form-label col-md-5">Controller Background:</label>
@@ -261,7 +363,8 @@ const AdminPageCopyAll = ({ Id }) => {
                                                                 name="controller_bg"
                                                                 className="form-control form-control-sm "
                                                                 placeholder="Enter Controller bg"
-                                                                defaultValue={data.controller_bg}
+                                                                value={controllerBgV.inputCBV}
+                                                                onChange={(cbv) => handleCBVInputChange('inputCBV', cbv.target.value)}
                                                             />
                                                             <div className="sp-replacer sp-light"><div className="sp-preview"><div className="sp-preview-inner"></div></div><div className="sp-dd mt-1">▼</div></div>
                                                         </div>
@@ -277,7 +380,7 @@ const AdminPageCopyAll = ({ Id }) => {
                                                                 <IconModal
                                                                     names="page_group_icon"
                                                                     index={index}
-                                                                    pageGroupIcons={data.page_group_icon}
+                                                                    pageGroupIcons={data?.page_group_icon}
                                                                 ></IconModal>
 
                                                             </div>
@@ -285,7 +388,7 @@ const AdminPageCopyAll = ({ Id }) => {
                                                     </div>
                                                     <label className="col-form-label col-md-6">Controller Sort:</label>
                                                     <div className="col-md-6">
-                                                        <select required="" name="controller_sort" className="form-control form-control-sm controller_sort trim" id="controller_sort" defaultValue={data.controller_sort}>
+                                                        <select required="" name="controller_sort" className="form-control form-control-sm controller_sort trim" id="controller_sort" value={controllerSortV.inputCS} onChange={(cs) => handleCSInputChange('inputCS', cs.target.value)}>
 
                                                             {
                                                                 sortArr.map((d, ind) => <option key={ind} value={d}>{d}</option>)
@@ -299,7 +402,8 @@ const AdminPageCopyAll = ({ Id }) => {
                                                             name="page_group_sort"
                                                             className="form-control form-control-sm page_group_sort trim"
                                                             id="page_group_sort"
-                                                            defaultValue={data.page_group_sort}
+                                                            value={pageGroupSortV.inputPGS}
+                                                            onChange={(pgs) => handlePGSInputChange('inputPGS', pgs.target.value)}
                                                         >
                                                             {sortArr.map((d, ind) => (
                                                                 <option key={ind} value={d}>
@@ -311,10 +415,7 @@ const AdminPageCopyAll = ({ Id }) => {
                                                     </div>
                                                     <label className="col-form-label col-md-6">Method Sort:</label>
                                                     <div className="col-md-6">
-                                                        <select required="" name="method_sort" className="form-control form-control-sm method_sort trim" id="method_sort"
-                                                            // defaultValue={data?.method_sort}
-                                                            defaultValue={methodSortValue}
-                                                        >
+                                                        <select required="" name="method_sort" className="form-control form-control-sm method_sort trim" id="method_sort" defaultValue={data?.method_sort}>
                                                             {
                                                                 sortArr.map((d, ind) => <option key={ind} value={ind}>{ind}</option>)
                                                             }
@@ -328,7 +429,8 @@ const AdminPageCopyAll = ({ Id }) => {
                                                                 name="controller_color"
                                                                 className="form-control form-control-sm "
                                                                 placeholder="Enter controller color"
-                                                                defaultValue={data.controller_color}
+                                                                value={controllerColorV.inputCCV}
+                                                                onChange={(ccv) => handleCCVInputChange('inputCCV', ccv.target.value)}
                                                             />
                                                             <div className="sp-replacer sp-light"><div className="sp-preview"><div className="sp-preview-inner"></div></div><div className="sp-dd mt-1">▼</div></div>
                                                         </div>
@@ -341,24 +443,10 @@ const AdminPageCopyAll = ({ Id }) => {
                             ))
                         }
 
-                        {
-                            loading && <div className='text-center'>
-                                <div colSpan='100%' className='my-5 py-5 border-bottom-0 '>
-                                    <div className=' my-5 py-5 text-primary'>
-                                        <FontAwesomeIcon style={{
-                                            height: '40px',
-                                            width: '40px',
-                                        }} icon={faSpinner} spin />
-                                    </div>
-                                </div>
-                            </div>
-                        }
 
-                        {
-                            loading || <div className="offset-md-3 col-sm-6 my-3 pb-5">
-                                <input type="submit" name="create" className="btn btn-success btn-sm" value="Submit" />
-                            </div>
-                        }
+                        <div className="offset-md-3 col-sm-6 my-3 pb-5">
+                            <input type="submit" name="create" className="btn btn-success btn-sm" value="Submit" />
+                        </div>
 
                     </form>
                 </>
@@ -368,7 +456,7 @@ const AdminPageCopyAll = ({ Id }) => {
     );
 };
 
-export default AdminPageCopyAll;
+export default AdminPageEditAll;
 
 
 

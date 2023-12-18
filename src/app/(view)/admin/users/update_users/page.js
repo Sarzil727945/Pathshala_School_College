@@ -6,8 +6,8 @@ import { useState } from 'react';
 import Swal from 'sweetalert2';
 
 
-const UpdateUsers = ({id}) => {
-  
+const UpdateUsers = ({ id }) => {
+
 
     const { data: adminPageListSingle = [], isLoading, refetch
     } = useQuery({
@@ -19,18 +19,27 @@ const UpdateUsers = ({id}) => {
         }
     })
 
-    console.log(adminPageListSingle)
+    const information = adminPageListSingle[0]
+   
 
     const [editProfile, setEditProfile] = useState(adminPageListSingle)
-console.log(editProfile)
+    console.log(editProfile)
+
     const handleEditHome = event => {
         event.preventDefault()
+        const form = event.target;
+        const full_name = form.full_name.value
+        const email = form.email.value
+        const mobile = form.mobile.value
+        const role_name = form.role_name.value
+        const editProfileU = {full_name, email, mobile, role_name}
+        
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/updateUsers/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(editProfile)
+            body: JSON.stringify(editProfileU)
         })
             .then(Response => Response.json())
             .then(data => {
@@ -42,14 +51,14 @@ console.log(editProfile)
                         'Good job!',
                         'You clicked the button!',
                         'success'
-                      )
+                    )
                 }
                 else {
                     Swal.fire(
                         'Good job!',
                         'You clicked the button!',
                         'error'
-                      )
+                    )
                 }
 
             })
@@ -81,7 +90,7 @@ console.log(editProfile)
                                 <div className="col-md-6">
                                     <input type="text"
                                         onChange={handleChange}
-                                        
+                                        defaultValue={information?.full_name}
                                         name='full_name' className="form-control mb-3" placeholder="Enter Full Name" />
 
                                 </div>
@@ -89,14 +98,18 @@ console.log(editProfile)
                             <div className="form-group row">
                                 <label className="col-form-label col-md-3">Email:</label>
                                 <div className="col-md-6">
-                                    <input type="text"   onChange={handleChange}
+                                    <input type="text"
+                                        onChange={handleChange}
+                                        defaultValue={information?.email}
                                         name='email' className="form-control mb-3" placeholder="Enter Email" />
                                 </div>
                             </div>
                             <div className="form-group row">
                                 <label className="col-form-label col-md-3">Mobile:</label>
                                 <div className="col-md-6">
-                                    <input type="text"   onChange={handleChange}
+                                    <input type="text" 
+                                    onChange={handleChange}
+                                    defaultValue={information?.mobile}
                                         name='mobile' className="form-control mb-3" placeholder="Enter Mobile" />
                                 </div>
                             </div>
@@ -104,7 +117,7 @@ console.log(editProfile)
                                 <label className="col-form-label col-md-3">Role Name:</label>
                                 <div className="col-md-6">
 
-                                    <select required="" name="role_name"   onChange={handleChange} className="form-control form-control-sm  required integer_no_zero" placeholder="Enter Role Name">
+                                    <select required="" name="role_name" onChange={handleChange} className="form-control form-control-sm  required integer_no_zero" placeholder="Enter Role Name" defaultValue={information?.role_name}>
                                         <option>Select users Role</option>
                                         <option value="8">Accountant</option>
                                         <option value="6">admin</option>
