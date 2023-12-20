@@ -7,7 +7,7 @@ const Home = () => {
         <div>
             <WebHome></WebHome>
             
-            <Link href='http://localhost:3000/excel_sheet'>Excel Sheet</Link>
+            <Link href='excel_sheet'>Excel Sheet</Link>
         </div>
     );
 };

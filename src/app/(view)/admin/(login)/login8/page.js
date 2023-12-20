@@ -19,7 +19,7 @@ const Login8 = () => {
 
             <div className="form">
                 <div className="thumbnail">
-                    <Image src="https://atik.urbanitsolution.com/files/logo/thumbnail/7632b474c6d5b78e3f6233a87461bf623f453c67.jpeg" />
+                    <Image src="https://atik.urbanitsolution.com/files/logo/thumbnail/7632b474c6d5b78e3f6233a87461bf623f453c67.jpeg" alt="Description of the image"/>
                 </div>
                 <div className="row">
                     <div className="col-sm-12 col-md-12 ">

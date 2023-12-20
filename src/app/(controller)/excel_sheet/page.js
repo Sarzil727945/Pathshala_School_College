@@ -8,10 +8,13 @@ import React, { useRef } from 'react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { useReactToPrint } from "react-to-print";
+import toast from 'react-hot-toast';
+
 
 const ExcelSheet = () => {
   const [data, setData] = useState([]);
   const [excelSheet, setExcelSheet] = useState([]);
+  const notifyS = (text) => toast.success(text);
 
   const handleFileUpload = (e) => {
     const reader = new FileReader();
@@ -57,6 +60,39 @@ const ExcelSheet = () => {
       pdf.save('table.pdf');
     });
   };
+
+
+  // url to pdf 
+  const [url, setUrl] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    notifyS('Please Waiting URL To PDF Convert Running..');
+    try {
+      const response = await fetch('http://localhost:5002/convertToPDF', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ url }),
+      });
+
+      if (response.ok) {
+        const blob = await response.blob();
+        const pdfUrl = URL.createObjectURL(blob);
+        window.open(pdfUrl, '_blank');
+        console.log('okkk');
+      } else {
+        console.error('Failed to convert to PDF:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+
+
 
 
   // pdf 2
@@ -161,6 +197,14 @@ const ExcelSheet = () => {
             onClick={handleExportToPDF} >
             Export Data to PDF
           </button>
+
+          <form onSubmit={handleSubmit}>
+            <label>
+              URL:
+              <input type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
+            </label>
+            <button type="submit">Convert to PDF</button>
+          </form>
 
           <div ref={conponentPDF} style={{ width: '100%' }}>
             <table className="table" id="table-to-xls"

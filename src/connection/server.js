@@ -81,6 +81,70 @@ app.get("/Pagination/:pageNo/:perPage", adminPageList.PaginationController);
 app.get('/admin/group-names-id', adminPageList.getPageGroupAndControllerNamesId)
 
 
+// url to pdf
+// const { default: puppeteer } = require('puppeteer')
+// app.post('/convertToPDF', async (req, res) => {
+//   const { url } = req.body;
+
+//   try {
+//     // Launch Puppeteer
+//     const browser = await puppeteer.launch({
+//       headless: true,
+//     });
+
+//     // Create a new page
+//     const page = await browser.newPage();
+
+//     // Navigate to the specified URL
+//     await page.goto(url, { waitUntil: 'networkidle2' });
+
+//     // Generate a PDF buffer
+//     const pdfBuffer = await page.pdf();
+
+//     // Close the browser
+//     await browser.close();
+
+//     // Set the content type and send the PDF buffer as the response
+//     res.contentType('application/pdf');
+//     res.send(pdfBuffer);
+//   } catch (error) {
+//     console.error('Error converting to PDF:', error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// });
+
+const puppeteer = require('puppeteer');
+app.post('/convertToPDF', async (req, res) => {
+  const { url } = req.body;
+
+  try {
+    // Launch Puppeteer with the new headless mode
+    const browser = await puppeteer.launch({
+      headless: 'new',
+    });
+
+    // Create a new page
+    const page = await browser.newPage();
+
+    // Navigate to the specified URL
+    await page.goto(url, { waitUntil: 'networkidle2' });
+
+    // Generate a PDF buffer
+    const pdfBuffer = await page.pdf();
+
+    // Close the browser
+    await browser.close();
+
+    // Set the content type and send the PDF buffer as the response
+    res.contentType('application/pdf');
+    res.send(pdfBuffer);
+  } catch (error) {
+    console.error('Error converting to PDF:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
 app.get('/', (req, res) => {
   res.send('Server running...')
 })

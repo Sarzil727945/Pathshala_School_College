@@ -164,17 +164,17 @@ const AdminSidebar = ({ child }) => {
 
 
   const handleDashboardClick = () => {
-    sessionStorage.removeItem('pageGroup');
     localStorage.removeItem('pageGroup');
-    sessionStorage.removeItem('controllerName');
+    localStorage.removeItem('pageGroup');
+    localStorage.removeItem('controllerName');
     handleLinkClick('')
   };
 
   useEffect(() => {
     if (window.location.pathname === "/Admin/dashboard") {
       localStorage.removeItem('pageGroup');
-      sessionStorage.removeItem('pageGroup');
-      sessionStorage.removeItem('controllerName')
+      localStorage.removeItem('pageGroup');
+      localStorage.removeItem('controllerName')
     }
   }, []);
 
