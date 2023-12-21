@@ -1,0 +1,74 @@
+
+
+			
+ 
+			.header_background_color{background:linear-gradient(to right top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1))!important}
+
+			.sub_header_background_color{background:linear-gradient(to right top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0))!important}
+
+            
+			.bg_card_body{background:linear-gradient(to right top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0))!important}
+
+
+			.side_menu_bg{background:linear-gradient(to right top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0))!important}
+
+			.side_menu_l1_bg{background:linear-gradient(to right top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0))!important;
+
+			border-bottom:  1px solid rgb(0, 0, 0)!important;
+		    }
+         
+
+			.side_menu_l2_bg{background:linear-gradient(to right top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0))!important;
+
+			border-bottom:  1px solid rgb(0, 0, 0)!important;
+		    }
+
+			.side_menu_l3_bg{background:linear-gradient(to right top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0))!important;
+
+			border-bottom:  1px solid rgb(0, 0, 0)!important;
+		    }
+
+
+			.body_content_bg{
+			background:linear-gradient(to right top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+			 url('')!important;
+
+		     }
+
+			.body_bg{
+			
+			background:linear-gradient(to right top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+		
+			 url('')!important;
+
+		    }
+
+			.card_header_bg{
+					
+			  background:linear-gradient(to right top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+		
+			  url('')!important;
+
+			 
+		      }
+
+              
+			.header_color{color: rgb(0, 0, 0)!important}
+			.card_header_color{color: rgb(0, 0, 0)!important}
+			.body_color{color: rgb(0, 0, 0)!important}
+		
+
+
+			.sub_header_pg_text_color{color: rgb(0, 0, 0)!important}
+			.sub_header_controller_text_color{color: rgb(0, 0, 0)!important}
+			.sub_header_options_text_color{color: rgb(0, 0, 0)!important}
+			.card_body_color{color: rgb(0, 0, 0)!important}
+			.side_menu_l1_color{color: rgb(0, 0, 0)!important}
+			.side_menu_l2_color{color: rgb(0, 0, 0)!important}
+			.side_menu_l3_color{color: rgb(0, 0, 0)!important}
+			.body_content_color{color: rgb(0, 0, 0)!important}
+			.card_header_color{color: rgb(0, 0, 0)!important}
+			.project_name_color{color: rgb(0, 0, 0)!important}
+
+
+			

@@ -1,0 +1,68 @@
+
+
+			
+
+			.header_background_color{background:linear-gradient(to right top, null, null)}
+
+			.sub_header_background_color{background:linear-gradient(to right top, null, null)}
+
+
+			.bg_card_body{background:linear-gradient(to right top, rgba(23, 162, 184, ), rgba(23, 162, 184, ))}
+
+
+			.side_menu_bg{background:linear-gradient(to right top, rgba(66, 103, 178, ), rgba(66, 103, 178, ))}
+
+			.side_menu_l1_bg{background:linear-gradient(to right top, rgba(66, 103, 178, ), rgba(66, 103, 178, ));
+
+			border-bottom:  1px solid null;
+		    }
+
+			.side_menu_l2_bg{background:linear-gradient(to right top, rgba(38, 63, 120, ), rgba(66, 103, 178, 1));
+
+			border-bottom:  1px solid null;
+		    }
+
+			.side_menu_l3_bg{background:linear-gradient(to right top, rgba(59, 89, 152, ), rgba(66, 103, 178, ));
+
+			border-bottom:  1px solid null;
+		    }
+
+
+			.body_content_bg{
+			background:linear-gradient(to right top, null, null),
+			 url('');
+
+		     }
+
+			.body_bg{color: null ;
+			
+			background:linear-gradient(to right top, null, null),
+		
+			 url('');
+
+		    }
+
+			.card_header_bg{
+				color: null ;		
+			  background:linear-gradient(to right top, rgba(66, 103, 178, ), rgba(66, 103, 178, )),
+		
+			  url('');
+
+			 
+		      }
+
+
+			.header_color{color: null}
+			.sub_header_pg_text_color{color: null}
+			.sub_header_controller_text_color{color: null}
+			.sub_header_options_text_color{color: null}
+			.card_body_color{color: null}
+			.side_menu_l1_color{color: null}
+			.side_menu_l2_color{color: null}
+			.side_menu_l3_color{color: null}
+			.body_content_color{color: null}
+			.card_header_color{color: null}
+			.project_name_color{color: null}
+
+
+			
