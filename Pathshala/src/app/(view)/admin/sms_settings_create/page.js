@@ -88,8 +88,8 @@ const AdmissionSMS = () => {
         }
         // console.log(updateValue);
 
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/smsSettings/${1}`, {
-            method: 'PUT',
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/smsSettings`, {
+            method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },

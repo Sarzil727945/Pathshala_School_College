@@ -40,7 +40,7 @@ const smsSettings = {
             const {
                 os_admission, ot_join, oe_join, ss_admission, st_join, se_join, s_attendance, s_out_attendance, t_attendance, t_out_attendance, e_attendance, e_out_attendance, s_absence, te_absence, f_collection, df_collection, df_time, s_result, t_salary, e_salary,
             } = req.body;
-    
+    const id = 1
             const query = `
                 UPDATE sms_settings
                 SET 
@@ -70,7 +70,7 @@ const smsSettings = {
             connection.query(
                 query,
                 [
-                    os_admission, ot_join, oe_join, ss_admission, st_join, se_join, s_attendance, s_out_attendance, t_attendance, t_out_attendance, e_attendance, e_out_attendance, s_absence, te_absence, f_collection, df_collection, df_time, s_result, t_salary, e_salary, req.params.id,
+                    os_admission, ot_join, oe_join, ss_admission, st_join, se_join, s_attendance, s_out_attendance, t_attendance, t_out_attendance, e_attendance, e_out_attendance, s_absence, te_absence, f_collection, df_collection, df_time, s_result, t_salary, e_salary, id,
                 ],
                 (error, result) => {
                     if (!error && result.affectedRows > 0) {

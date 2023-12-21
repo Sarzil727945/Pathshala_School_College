@@ -10,7 +10,7 @@ import '../admin_panel_settings_create/adminPanel.css'
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
+
 
 
 const AdminSettingsEdit = ({ id }) => {
@@ -45,15 +45,15 @@ const AdminSettingsEdit = ({ id }) => {
 	//     const files = e.target.files;
 
 	//     if (files.length > 0) {
-	//       const newImagePreviews = Array.from(files).map((file) => URL.createObjectURL(file));
-	//       setSelectedFile((prevImagePreviews) => [...prevImagePreviews, ...newImagePreviews]);
+	//       const newimgPreviews = Array.from(files).map((file) => URL.createObjectURL(file));
+	//       setSelectedFile((previmgPreviews) => [...previmgPreviews, ...newimgPreviews]);
 	//     }
 	//   };
-	//   const handleRemoveImage = (index) => {
-	//     setSelectedFile((prevImagePreviews) => {
-	//       const updatedImagePreviews = [...prevImagePreviews];
-	//       updatedImagePreviews.splice(index, 1);
-	//       return updatedImagePreviews;
+	//   const handleRemoveimg = (index) => {
+	//     setSelectedFile((previmgPreviews) => {
+	//       const updatedimgPreviews = [...previmgPreviews];
+	//       updatedimgPreviews.splice(index, 1);
+	//       return updatedimgPreviews;
 	//     });
 	//   };
 
@@ -75,8 +75,8 @@ const AdminSettingsEdit = ({ id }) => {
 	const upload = () => {
 		const formData = new FormData()
 		formData.append('files', selectedFile)
-		formData.append('files', contentBgImage)
-		formData.append('files', bodyBgImage)
+		formData.append('files', contentBgimg)
+		formData.append('files', bodyBgimg)
 		axios.post('http://localhost:5003/upload', formData)
 			.then(res => { })
 			.catch(er => console.log(er))
@@ -85,7 +85,7 @@ const AdminSettingsEdit = ({ id }) => {
 
 	console.log(selectedFile)
 
-	const handleRemoveImage = () => {
+	const handleRemoveimg = () => {
 		const confirm = window.confirm('Are you sure want to delete this')
 		if (confirm) {
 
@@ -96,30 +96,30 @@ const AdminSettingsEdit = ({ id }) => {
 	console.log(selectedFile)
 
 
-	const [contentBgImage, setContentBgImage] = useState(null)
-	const handleContentBgImage = (e) => {
+	const [contentBgimg, setContentBgimg] = useState(null)
+	const handleContentBgimg = (e) => {
 		const contentImg = e.target.files[0];
-		setContentBgImage(contentImg);
+		setContentBgimg(contentImg);
 	}
-	const handleRemoveContentBgImage = () => {
+	const handleRemoveContentBgimg = () => {
 		const confirm = window.confirm('Are you sure want to delete this')
 		if (confirm) {
 
 
-			setContentBgImage(null);
+			setContentBgimg(null);
 		}
 	};
 
-	const [bodyBgImage, setBodyBgImage] = useState(null)
-	const handleBodyBgImage = (e) => {
+	const [bodyBgimg, setBodyBgimg] = useState(null)
+	const handleBodyBgimg = (e) => {
 		const bodyImg = e.target.files[0];
-		setBodyBgImage(bodyImg);
+		setBodyBgimg(bodyImg);
 	}
-	const handleRemoveBodyBgImage = () => {
+	const handleRemoveBodyBgimg = () => {
 		const confirm = window.confirm('Are you sure want to delete this')
 		if (confirm) {
 
-			setBodyBgImage(null);
+			setBodyBgimg(null);
 		}
 	};
 
@@ -697,7 +697,7 @@ const AdminSettingsEdit = ({ id }) => {
 
 
 
-	//   const filePath = `/image/${getCurrentDateTime()}_${selectedFile.name}`;
+	//   const filePath = `/img/${getCurrentDateTime()}_${selectedFile.name}`;
 	const handleSubmit = async (event) => {
 
 		event.preventDefault()
@@ -749,19 +749,19 @@ const AdminSettingsEdit = ({ id }) => {
 		const body_content_bg_color_two = form.body_content_bg_color_two.value
 		const bg_body_content_position = form.bg_body_content_position.value
 		const bg_body_content_opacity = form.bg_body_content_opacity.value
-		// const body_content_bg_image1 = form.body_content_bg_image1.value
+		// const body_content_bg_img1 = form.body_content_bg_img1.value
 		const body_content_text_color = form.body_content_text_color.value
 		const body_bg_color_one = form.body_bg_color_one.value
 		const body_bg_color_two = form.body_bg_color_two.value
 		const bg_body_position = form.bg_body_position.value
 		const bg_body_opacity = form.bg_body_opacity.value
-		// const body_bg_image2 = form.body_bg_image2.value
+		// const body_bg_img2 = form.body_bg_img2.value
 		const body_text_color = form.body_text_color.value
 		const card_header_bg_color_one = form.card_header_bg_color_one.value
 		const card_header_bg_color_two = form.card_header_bg_color_two.value
 		const bg_card_header_position = form.bg_card_header_position.value
 		const bg_card_header_opacity = form.bg_card_header_opacity.value
-		// const card_header_bg_image3 = form.card_header_bg_image3.value
+		// const card_header_bg_img3 = form.card_header_bg_img3.value
 		const card_header_text_color_one = form.card_header_text_color_one.value
 		const project_name_color = form.project_name_color.value
 		const status = form.status.value
@@ -814,15 +814,15 @@ const AdminSettingsEdit = ({ id }) => {
 			color_left_menu_three: left_menu_level_three_text_color,
 			border_left_menu_three: left_menu_level_three_border_color,
 
-			bg_body_content: `${body_content_bg_color_one},${body_content_bg_color_two},${bg_body_content_position},${bg_body_content_opacity},${`image/files/${getCurrentDateTime()}/${contentBgImage ? contentBgImage.name : ''}`}`,
+			bg_body_content: `${body_content_bg_color_one},${body_content_bg_color_two},${bg_body_content_position},${bg_body_content_opacity},${`img/files/${getCurrentDateTime()}/${contentBgimg ? contentBgimg.name : ''}`}`,
 			bg_body_content_status: 1,
 			color_body_content: body_content_text_color,
 
-			bg_body: `${body_bg_color_one},${body_bg_color_two},${bg_body_position},${bg_body_opacity},${`image/files/${getCurrentDateTime()}/${bodyBgImage ? bodyBgImage.name : ''}`}`,
+			bg_body: `${body_bg_color_one},${body_bg_color_two},${bg_body_position},${bg_body_opacity},${`img/files/${getCurrentDateTime()}/${bodyBgimg ? bodyBgimg.name : ''}`}`,
 			color_body: body_text_color,
 			bg_body_status: 1,
 
-			bg_card_header: `${card_header_bg_color_one},${card_header_bg_color_two},${bg_card_header_position},${bg_card_header_opacity},${`image/files/${getCurrentDateTime()}/${selectedFile ? selectedFile.name : ''}`}`,
+			bg_card_header: `${card_header_bg_color_one},${card_header_bg_color_two},${bg_card_header_position},${bg_card_header_opacity},${`img/files/${getCurrentDateTime()}/${selectedFile ? selectedFile.name : ''}`}`,
 
 
 
@@ -866,7 +866,7 @@ const AdminSettingsEdit = ({ id }) => {
 
 			.body_content_bg{
 			background:linear-gradient(${bodyGradientDirectionChange ? bodyGradientDirectionChange : `${bg_body_content?.slice(2, 3)}`}, ${hexToRgba(bodyBgChange ? bodyBgChange : `${bg_body_content?.slice(0, 1)}`, selectedOpacityBody ? selectedOpacityBody : `${bg_body_content?.slice(3, 4)}`)}, ${hexToRgba(bodyGradientColorChange ? bodyGradientColorChange : `${bg_body_content?.slice(1, 2)}`, selectedOpacityBody ? selectedOpacityBody : `${bg_body_content?.slice(3, 4)}`)}),
-			 url('${`${contentBgImage ? `image/files/${getCurrentDateTime()}${contentBgImage.name}` : ''}`}')!important;
+			 url('${`${contentBgimg ? `img/files/${getCurrentDateTime()}${contentBgimg.name}` : ''}`}')!important;
 
 		     }
 
@@ -874,7 +874,7 @@ const AdminSettingsEdit = ({ id }) => {
 			
 			background:linear-gradient(${mainBodyGradientDirectionChange ? mainBodyGradientDirectionChange : `${bg_body?.slice(2, 3)}`}, ${hexToRgba(mainBodyBgChange ? mainBodyBgChange : `${bg_body?.slice(0, 1)}`, selectedOpacityMainBody ? selectedOpacityMainBody : `${bg_body?.slice(3, 4)}`)}, ${hexToRgba(mainBodyGradientColorChange ? mainBodyGradientColorChange : `${bg_body?.slice(1, 2)}`, selectedOpacityMainBody ? selectedOpacityMainBody : `${bg_body?.slice(3, 4)}`)}),
 		
-			 url('${`${bodyBgImage ? `image/files/${getCurrentDateTime()}${bodyBgImage.name}` : ''}`}')!important;
+			 url('${`${bodyBgimg ? `img/files/${getCurrentDateTime()}${bodyBgimg.name}` : ''}`}')!important;
 
 		    }
 
@@ -882,7 +882,7 @@ const AdminSettingsEdit = ({ id }) => {
 					
 			  background:linear-gradient(${cardHeaderGradientDirectionChange ? cardHeaderGradientDirectionChange : `${bg_card_header?.slice(2, 3)}`}, ${hexToRgba(cardHeaderBgChange ? cardHeaderBgChange : `${bg_card_header?.slice(0, 1)}`, selectedOpacityCardHeader ? selectedOpacityCardHeader : `${bg_card_header?.slice(3, 4)}`)}, ${hexToRgba(cardHeaderGradientColorChange ? cardHeaderGradientColorChange : `${bg_card_header?.slice(1, 2)}`, selectedOpacityCardHeader ? selectedOpacityCardHeader : `${bg_card_header?.slice(3, 4)}`)}),
 		
-			  url('${`${selectedFile ? `image/files/${getCurrentDateTime()}${selectedFile.name}` : ''}`}')!important;
+			  url('${`${selectedFile ? `img/files/${getCurrentDateTime()}${selectedFile.name}` : ''}`}')!important;
 
 			 
 		      }
@@ -1276,7 +1276,7 @@ const AdminSettingsEdit = ({ id }) => {
 
 											<div className='d-flex gap-3 mt-3'>
 												<div >
-													<Image src="https://atik.urbanitsolution.com/files/logo/thumbnail/7632b474c6d5b78e3f6233a87461bf623f453c67.jpeg" className="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""
+													<img src="https://atik.urbanitsolution.com/files/logo/thumbnail/7632b474c6d5b78e3f6233a87461bf623f453c67.jpeg" className="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""
 														width='40'
 													/>
 												</div>
@@ -1310,7 +1310,7 @@ const AdminSettingsEdit = ({ id }) => {
 														</li>
 														<li className="nav-item py-1 bg-light border rounded-circle">
 															<a className="nav-link text-secondary" href="#">
-																<FontAwesomeIcon icon={faBell} className="zt-1 swingimage" />
+																<FontAwesomeIcon icon={faBell} className="zt-1 swingimg" />
 																<span className="iconBotton badge badge-danger badge-pill  position-absolute bg-danger mb-5">0</span>
 															</a>
 														</li>
@@ -2619,24 +2619,24 @@ const AdminSettingsEdit = ({ id }) => {
 														<div class=" mr-2">
 															<div>
 																<span class="btn btn-success btn-sm fileinput-button thumbnail" >
-																	<label for="fileInput1" className='mb-0' ><FaUpload></FaUpload>Select Image </label>
+																	<label for="fileInput1" className='mb-0' ><FaUpload></FaUpload>Select img </label>
 																	<input
-																		name='body_content_bg_image1'
-																		onChange={handleContentBgImage}
+																		name='body_content_bg_img1'
+																		onChange={handleContentBgimg}
 																		type="file" id="fileInput1" style={{ display: "none" }} />
 																</span>
 															</div>
 														</div>
 														<div class=" border img_bg_card_header" style={{ width: '120px', height: '70px' }} >
 
-															{contentBgImage ?
+															{contentBgimg ?
 
 																<>
-																	<Image className="w-100"
-																		src={URL.createObjectURL(contentBgImage)}
+																	<img className="w-100"
+																		src={URL.createObjectURL(contentBgimg)}
 																		alt="Uploaded File" />
 																	<button
-																		onClick={handleRemoveContentBgImage}
+																		onClick={handleRemoveContentBgimg}
 																		type="button" class="btn btn-danger btn-sm position-absolute float-right ml-n4" ><FaTimes></FaTimes></button>
 																</>
 																:
@@ -2693,11 +2693,11 @@ const AdminSettingsEdit = ({ id }) => {
 									<div className=' p-3 border '
 
 
-										// style={{ backgroundImage: contentBgImage ? `url(${URL.createObjectURL(contentBgImage)})` : 'none', background: `linear-gradient(${bodyGradientDirectionChange ? bodyGradientDirectionChange : bg_body_content?.slice(2, 3)}, ${bodyBgChange ? bodyBgChange : bg_body_content?.slice(0, 1)}, ${bodyGradientColorChange ? bodyGradientColorChange : bg_body_content?.slice(1, 2)})`, opacity: selectedOpacityBody ? selectedOpacityBody : bg_body_content?.slice(3, 4) }}
+										// style={{ backgroundimg: contentBgimg ? `url(${URL.createObjectURL(contentBgimg)})` : 'none', background: `linear-gradient(${bodyGradientDirectionChange ? bodyGradientDirectionChange : bg_body_content?.slice(2, 3)}, ${bodyBgChange ? bodyBgChange : bg_body_content?.slice(0, 1)}, ${bodyGradientColorChange ? bodyGradientColorChange : bg_body_content?.slice(1, 2)})`, opacity: selectedOpacityBody ? selectedOpacityBody : bg_body_content?.slice(3, 4) }}
 
 
 										style={{
-											ackgroundImage: contentBgImage ? `url(${URL.createObjectURL(contentBgImage)})` : 'none',
+											ackgroundimg: contentBgimg ? `url(${URL.createObjectURL(contentBgimg)})` : 'none',
 											background: `linear-gradient(${bodyGradientDirectionChange ? bodyGradientDirectionChange : `${bg_body_content?.slice(2, 3)}`}, ${hexToRgba(bodyBgChange ? bodyBgChange : `${bg_body_content?.slice(0, 1)}`, selectedOpacityBody ? selectedOpacityBody : `${bg_body_content?.slice(3, 4)}`)}, ${hexToRgba(bodyGradientColorChange ? bodyGradientColorChange : `${bg_body_content?.slice(1, 2)}`, selectedOpacityBody ? selectedOpacityBody : `${bg_body_content?.slice(3, 4)}`)})`
 										}}
 
@@ -2706,7 +2706,7 @@ const AdminSettingsEdit = ({ id }) => {
 									//   }}
 
 
-									// style={{ backgroundImage: contentBgImage ? `url(${URL.createObjectURL(contentBgImage)})` : 'none', background: `linear-gradient(${bodyGradientDirectionChange}, ${bodyBgChange}, ${bodyGradientColorChange})`, opacity: selectedOpacityBody }}
+									// style={{ backgroundimg: contentBgimg ? `url(${URL.createObjectURL(contentBgimg)})` : 'none', background: `linear-gradient(${bodyGradientDirectionChange}, ${bodyBgChange}, ${bodyGradientColorChange})`, opacity: selectedOpacityBody }}
 									>
 
 										<p style={{ color: bodyTextColour ? bodyTextColour : adminPanelSettingsEdit[0]?.color_body_content }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, natus quidem? Quia architecto ipsam doloribus deleniti asperiores, consequatur dolores fuga.</p>
@@ -2833,21 +2833,21 @@ const AdminSettingsEdit = ({ id }) => {
 														<div class=" mr-2">
 															<div>
 																<span class="btn btn-success btn-sm fileinput-button thumbnail" >
-																	<label for="fileInput2" className='mb-0' ><FaUpload></FaUpload>Select Image </label>
+																	<label for="fileInput2" className='mb-0' ><FaUpload></FaUpload>Select img </label>
 																	<input
-																		name='body_bg_image2'
-																		onChange={handleBodyBgImage}
+																		name='body_bg_img2'
+																		onChange={handleBodyBgimg}
 																		type="file" id="fileInput2" style={{ display: "none" }} />
 																</span>
 															</div>
 														</div>
 														<div class=" border img_bg_card_header" style={{ width: '120px', height: '70px' }} >
 
-															{bodyBgImage ?
+															{bodyBgimg ?
 																<>
-																	<Image className="w-100" src={URL.createObjectURL(bodyBgImage)} alt="Uploaded File" />
+																	<img className="w-100" src={URL.createObjectURL(bodyBgimg)} alt="Uploaded File" />
 																	<button
-																		onClick={handleRemoveBodyBgImage}
+																		onClick={handleRemoveBodyBgimg}
 																		type="button"
 																		className="btn btn-danger btn-sm position-absolute float-right ml-n4"
 																	>
@@ -2899,10 +2899,10 @@ const AdminSettingsEdit = ({ id }) => {
 
 
 								<div className="col-md-6 "
-									//  style={{ backgroundImage: bodyBgImage ? `url(${URL.createObjectURL(bodyBgImage)})` : 'none', background: `linear-gradient(${mainBodyGradientDirectionChange ? mainBodyGradientDirectionChange : bg_body?.slice(2, 3)}, ${mainBodyBgChange ? mainBodyBgChange : bg_body?.slice(0, 1)}, ${mainBodyGradientColorChange ? mainBodyGradientColorChange : bg_body?.slice(1, 2)})`, opacity: selectedOpacityMainBody ? selectedOpacityMainBody : bg_body?.slice(3, 4), color: mainBodyTextColour ? mainBodyTextColour : adminPanelSettingsEdit[0]?.color_body }}
+									//  style={{ backgroundimg: bodyBgimg ? `url(${URL.createObjectURL(bodyBgimg)})` : 'none', background: `linear-gradient(${mainBodyGradientDirectionChange ? mainBodyGradientDirectionChange : bg_body?.slice(2, 3)}, ${mainBodyBgChange ? mainBodyBgChange : bg_body?.slice(0, 1)}, ${mainBodyGradientColorChange ? mainBodyGradientColorChange : bg_body?.slice(1, 2)})`, opacity: selectedOpacityMainBody ? selectedOpacityMainBody : bg_body?.slice(3, 4), color: mainBodyTextColour ? mainBodyTextColour : adminPanelSettingsEdit[0]?.color_body }}
 
 									style={{
-										backgroundImage: bodyBgImage ? `url(${URL.createObjectURL(bodyBgImage)})` : 'none',
+										backgroundimg: bodyBgimg ? `url(${URL.createObjectURL(bodyBgimg)})` : 'none',
 										background: `linear-gradient(${mainBodyGradientDirectionChange ? mainBodyGradientDirectionChange : `${bg_body?.slice(2, 3)}`}, ${hexToRgba(mainBodyBgChange ? mainBodyBgChange : `${bg_body?.slice(0, 1)}`, selectedOpacityMainBody ? selectedOpacityMainBody : `${bg_body?.slice(3, 4)}`)}, ${hexToRgba(mainBodyGradientColorChange ? mainBodyGradientColorChange : `${bg_body?.slice(1, 2)}`, selectedOpacityMainBody ? selectedOpacityMainBody : `${bg_body?.slice(3, 4)}`)})`
 									}}
 
@@ -2912,7 +2912,7 @@ const AdminSettingsEdit = ({ id }) => {
 
 											<div className='d-flex gap-3 mt-3'>
 												<div >
-													<Image src="https://atik.urbanitsolution.com/files/logo/thumbnail/7632b474c6d5b78e3f6233a87461bf623f453c67.jpeg" className="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""
+													<img src="https://atik.urbanitsolution.com/files/logo/thumbnail/7632b474c6d5b78e3f6233a87461bf623f453c67.jpeg" className="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""
 														width='40'
 													/>
 												</div>
@@ -2946,7 +2946,7 @@ const AdminSettingsEdit = ({ id }) => {
 														</li>
 														<li className="nav-item py-1 bg-light border rounded-circle">
 															<a className="nav-link text-secondary" href="#">
-																<FontAwesomeIcon icon={faBell} className="zt-1 swingimage" />
+																<FontAwesomeIcon icon={faBell} className="zt-1 swingimg" />
 																<span className="iconBotton badge badge-danger badge-pill  position-absolute bg-danger mb-5">0</span>
 															</a>
 														</li>
@@ -3116,10 +3116,10 @@ const AdminSettingsEdit = ({ id }) => {
 														<div class=" mr-2">
 															<div>
 																<span class="btn btn-success btn-sm fileinput-button thumbnail" >
-																	<label for="fileInput" className='mb-0' ><FaUpload></FaUpload>Select Image </label>
+																	<label for="fileInput" className='mb-0' ><FaUpload></FaUpload>Select img </label>
 																	<input
 																		multiple
-																		name='card_header_bg_image3'
+																		name='card_header_bg_img3'
 																		onChange={handleFileChange}
 																		type="file" id="fileInput" style={{ display: "none" }} />
 																</span>
@@ -3131,9 +3131,9 @@ const AdminSettingsEdit = ({ id }) => {
   {selectedFile.map((preview, index) => (
 	<>
 	
-	<img key={index} src={preview} alt={`Uploaded Image ${index + 1}`} style={{ maxWidth: '100%', maxHeight: '300px', marginTop: '20px' }} />
+	<img key={index} src={preview} alt={`Uploaded img ${index + 1}`} style={{ maxWidth: '100%', maxHeight: '300px', marginTop: '20px' }} />
 	<button
-																onClick={handleRemoveImage}
+																onClick={handleRemoveimg}
 																type="button" class="btn btn-danger btn-sm position-absolute float-right ml-n4" ><FaTimes></FaTimes></button>
 	</>
 	
@@ -3143,11 +3143,11 @@ const AdminSettingsEdit = ({ id }) => {
 															{selectedFile ?
 
 																<>
-																	<Image className="w-100"
+																	<img className="w-100"
 																		src={URL.createObjectURL(selectedFile)}
 																		alt="Uploaded File" />
 																	<button
-																		onClick={handleRemoveImage}
+																		onClick={handleRemoveimg}
 																		type="button" class="btn btn-danger btn-sm position-absolute float-right ml-n4" ><FaTimes></FaTimes></button>
 																</>
 																:
@@ -3204,7 +3204,7 @@ const AdminSettingsEdit = ({ id }) => {
 										// style={{ background: `linear-gradient(${cardHeaderGradientDirectionChange ? cardHeaderGradientDirectionChange : bg_card_header?.slice(2, 3)}, ${cardHeaderBgChange ? cardHeaderBgChange : bg_card_header?.slice(0, 1)} ,  ${cardHeaderGradientColorChange ? cardHeaderGradientColorChange : bg_card_header?.slice(1, 2)})`, opacity: selectedOpacityCardHeader ? selectedOpacityCardHeader : bg_card_header?.slice(3, 4) }}
 
 										style={{
-											backgroundImage: selectedFile ? `url(${URL.createObjectURL(selectedFile)})` : 'none',
+											backgroundimg: selectedFile ? `url(${URL.createObjectURL(selectedFile)})` : 'none',
 											background: `linear-gradient(${cardHeaderGradientDirectionChange ? cardHeaderGradientDirectionChange : `${bg_card_header?.slice(2, 3)}`}, ${hexToRgba(cardHeaderBgChange ? cardHeaderBgChange : `${bg_card_header?.slice(0, 1)}`, selectedOpacityCardHeader ? selectedOpacityCardHeader : `${bg_card_header?.slice(3, 4)}`)}, ${hexToRgba(cardHeaderGradientColorChange ? cardHeaderGradientColorChange : `${bg_card_header?.slice(1, 2)}`, selectedOpacityCardHeader ? selectedOpacityCardHeader : `${bg_card_header?.slice(3, 4)}`)})`
 										}}
 
@@ -3261,7 +3261,7 @@ const AdminSettingsEdit = ({ id }) => {
 
 											<div className='d-flex gap-3 mt-3'>
 												<div >
-													<Image src="https://atik.urbanitsolution.com/files/logo/thumbnail/7632b474c6d5b78e3f6233a87461bf623f453c67.jpeg" className="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""
+													<img src="https://atik.urbanitsolution.com/files/logo/thumbnail/7632b474c6d5b78e3f6233a87461bf623f453c67.jpeg" className="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""
 														width='40'
 													/>
 												</div>
@@ -3295,7 +3295,7 @@ const AdminSettingsEdit = ({ id }) => {
 														</li>
 														<li className="nav-item py-1 bg-light border rounded-circle">
 															<a className="nav-link text-secondary" href="#">
-																<FontAwesomeIcon icon={faBell} className="zt-1 swingimage" />
+																<FontAwesomeIcon icon={faBell} className="zt-1 swingimg" />
 																<span className="iconBotton badge badge-danger badge-pill  position-absolute bg-danger mb-5">0</span>
 															</a>
 														</li>

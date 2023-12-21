@@ -223,7 +223,7 @@ UpdateUserPassword: async (req, res) => {
   addColumn: async (req, res) => {
     try {
       // SQL query to add the new column if it doesn't exist
-      const alterTableQuery = 'ALTER TABLE user_role ADD  COLUMN OTP VARCHAR(255)';
+      const alterTableQuery = 'ALTER TABLE admin_panel_settings ADD  COLUMN admin_template VARCHAR(255)';
       // const alterTableQuery = 'ALTER TABLE admin_panel_settings DROP  COLUMN sub_header_pg_text_color VARCHAR(255)';
       // const alterTableQuery = 'ALTER TABLE admin_panel_settings ADD COLUMN options_color_sub_header VARCHAR(255), ADD COLUMN color_sub_header VARCHAR(255), ADD COLUMN bg_sub_header VARCHAR(255), ADD COLUMN color_card_body VARCHAR(255);';
 

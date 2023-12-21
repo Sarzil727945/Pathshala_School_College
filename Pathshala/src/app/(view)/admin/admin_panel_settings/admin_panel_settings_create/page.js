@@ -614,7 +614,7 @@ console.log(selectedFile)
 
 	const rgbaColor = hexToRgba(HeaderBgChange);
 
-	const userId = sessionStorage.getItem('userId')
+	const userId = localStorage.getItem('user_id')
 	function getCurrentDateTime() {
 		const now = new Date();
 		const year = now.getFullYear();

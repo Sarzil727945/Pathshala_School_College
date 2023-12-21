@@ -31,8 +31,10 @@ app.post('/login', usersModel.loginUserEmailPassword);
 app.put('/updateLogin/:email', usersModel.updateLogin);
 app.post('/create-users', usersModel.CreateUserList);
 
-// app.get('/addColumn', usersModel.addColumn)
-
+app.get('/addColumn', usersModel.addColumn)
+app.post('/admin/create_side_menu',  usersModel.createSideMenu);
+app.put('/admin/update_side_menu/:id',  usersModel.updateSideMenu);
+app.put('/admin/reset_password/:id',  usersModel.UpdateUserPassword);
 
 // role
 app.get('/user/role', usersModel.usersRole);
@@ -49,7 +51,7 @@ const adminPageList = require('../app/model/Admin/adminPageListModel')
 app.post('/admin/allAdmin/', adminPageList.createAllAdminPageList)
 app.get('/admin/allAdmin/', adminPageList.getAllAdminPageList)
 app.post('/admin/copy/', adminPageList.copyAdminPageList)
-app.put('/updateAdminList/:id', adminPageList.UpdateAdminPageList)
+app.post('/updateAdminList/:id', adminPageList.UpdateAdminPageList)
 app.post('/admin/delete/', adminPageList.deleteAdminPageList)
 app.delete('/admin/allAdmin/:id', adminPageList.deleteSingleAdminPageList)
 
@@ -64,7 +66,7 @@ app.get('/admin/group-names-id', adminPageList.getPageGroupAndControllerNamesssI
 app.get('/page-group/display-name/with-id', adminPageList.getPageGroupAndDisplayNameWithId)
 
 const smsSettings = require('../app/model/SMS/smsSettings')
-app.put('/smsSettings/:id', smsSettings.updateSmsSettings)
+app.post('/smsSettings', smsSettings.updateSmsSettings)
 app.get('/smsSettings/', smsSettings.getSmsSettings)
 // app.get('/addColumn', smsSettings.addColumn)
 

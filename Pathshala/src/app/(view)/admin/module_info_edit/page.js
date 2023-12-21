@@ -85,14 +85,14 @@ const AdminPageEditAll = ({ Id, controllerName, pageGroup, controllerSort, pageG
             const page_group_sort = form?.page_group_sort?.value || form?.page_group_sort[index]?.value
             const method_sort = form?.method_sort?.value || form?.method_sort[index]?.value
             const controller_color = form?.controller_color?.value || form?.controller_color[index]?.value
-
+            const id = selectAllData[index].id
             const EditValue = {
-                display_name, controller_name, method_name, parent_id, menu_type, icon, btn, default_page, page_group, controller_bg, page_group_icon, controller_sort, page_group_sort, method_sort, controller_color
+                display_name, controller_name, method_name, parent_id, menu_type, icon, btn, default_page, page_group, controller_bg, page_group_icon, controller_sort, page_group_sort, method_sort, controller_color, id
             }
             console.log(EditValue);
 
             fetch(`${process.env.NEXT_PUBLIC_API_URL}/updateAdminList/${selectAllData[index].id}`, {
-                method: 'PUT',
+                method: 'POST',
                 headers: {
                     'content-type': 'application/json'
                 },
