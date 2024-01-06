@@ -12,17 +12,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import Loader from "@/common/Loader";
 
-
-
 const AdminPageListA = ({ searchParams }) => {
-
     const [users, setUsers] = useState([]);
     const [pageUsers, setPageUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         allAdminData()
     }, [])
-
     const allAdminData = () => {
         getAllAdminData().then(data => {
             setUsers(data)
@@ -127,6 +123,8 @@ const AdminPageListA = ({ searchParams }) => {
 
     };
 
+    console.log(pageNumber);
+    console.log(searchParams);
 
     return (
         <div className='px-3'>

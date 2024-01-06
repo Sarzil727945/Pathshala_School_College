@@ -21,12 +21,15 @@ const [categories, setCategories] = useState([])
       .then(data => setCategories(data))
   }, [])
 
+  
   const filteredCategories = categories.filter(category => category.status === 1);
+ 
+  console.log(filteredCategories)
 
   return (
     <html lang="en">
       <head>
-        <link rel="stylesheet" href={`http://192.168.0.110:5003/get-css/${filteredCategories[0]?.admin_template}?v=${filteredCategories[0]?.version_code}`} />  
+        <link rel="stylesheet" href={`http://localhost:5003/get-css-content/${filteredCategories[0]?.admin_template}?v=${filteredCategories[0]?.version_code}`} />  
       </head>
       <body >
         <QueryClientProvider client={queryClient}>

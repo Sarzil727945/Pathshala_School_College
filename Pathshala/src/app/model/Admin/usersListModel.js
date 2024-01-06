@@ -953,7 +953,7 @@ UpdateUserPassword: async (req, res) => {
   usersBtnIcons: async (req, res) => {
     try {
       const controllerName = 'users';
-      const query = 'SELECT * FROM module_info WHERE controller_name = ?';
+      const query = 'SELECT * FROM admin_page_list WHERE controller_name = ?';
 
       connection.query(query, [controllerName], (error, results) => {
         if (error) {
@@ -1071,7 +1071,7 @@ UpdateUserPassword: async (req, res) => {
   usersRoleBtn: async (req, res) => {
     try {
       const controllerName = 'user_role';
-      const query = 'SELECT * FROM module_info WHERE controller_name = ?';
+      const query = 'SELECT * FROM admin_page_list WHERE controller_name = ?';
 
       connection.query(query, [controllerName], (error, results) => {
         if (error) {
@@ -1092,7 +1092,7 @@ UpdateUserPassword: async (req, res) => {
     const query = `
           SELECT ap.id AS page_group_id, ap.page_group, ap.controller_name, GROUP_CONCAT(DISTINCT ap.display_name) AS display_names,
           GROUP_CONCAT(DISTINCT ap.method_name) AS method_names
-          FROM module_info ap
+          FROM admin_page_list ap
           
           GROUP BY ap.page_group, ap.controller_name
           HAVING ap.page_group IS NOT NULL AND ap.page_group != '';

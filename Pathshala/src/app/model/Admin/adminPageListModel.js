@@ -9,10 +9,10 @@ const AdminPageListModel = {
         const method_sort = 0;
 
         // SQL query to delete previous records with the same controller_name
-        const deleteQuery = 'DELETE FROM module_info WHERE controller_name = ?';
+        const deleteQuery = 'DELETE FROM admin_page_list WHERE controller_name = ?';
 
         // SQL query to insert a new record
-        const insertQuery = `INSERT INTO module_info (display_name, controller_name, method_name, parent_id, menu_type, icon, btn, default_page, page_group, page_group_icon, controller_sort, page_group_sort, header_menu_page, controller_bg, controller_color, method_sort, status, method_code, controller_code, method_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+        const insertQuery = `INSERT INTO admin_page_list (display_name, controller_name, method_name, parent_id, menu_type, icon, btn, default_page, page_group, page_group_icon, controller_sort, page_group_sort, header_menu_page, controller_bg, controller_color, method_sort, status, method_code, controller_code, method_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
         // Function to convert snake_case to Title Case
         const titleCaseWord = (word) => {
@@ -31,7 +31,7 @@ const AdminPageListModel = {
             SELECT 
                 MAX(controller_sort) AS max_controller_sort, 
                 MAX(page_group_sort) AS max_page_group_sort
-            FROM module_info
+            FROM admin_page_list
             WHERE page_group = ?
         `;
 
@@ -101,7 +101,7 @@ const AdminPageListModel = {
 
     getAllAdminPageList: async (req, res) => {
         try {
-            const data = "select * from 	module_info  order by controller_name asc";
+            const data = "select * from 	admin_page_list  order by controller_name asc";
 
             connection.query(data, function (error, result) {
                 console.log(result)
@@ -129,7 +129,7 @@ const AdminPageListModel = {
 
         // SQL query to insert a new record
         const insertQuery = `
-                INSERT INTO module_info (
+                INSERT INTO admin_page_list (
                     display_name, controller_name, method_name, parent_id, menu_type, icon, btn, default_page, 
                     page_group, page_group_icon, controller_sort, page_group_sort, header_menu_page, controller_bg, 
                     controller_color, method_sort, status, method_code, controller_code, method_status
@@ -174,7 +174,7 @@ const AdminPageListModel = {
             } = req.body;
 
             const query = `
-            UPDATE module_info 
+            UPDATE admin_page_list 
             SET 
               display_name = ?, 
               controller_name = ?, 
@@ -234,7 +234,7 @@ const AdminPageListModel = {
         const { id } = req.body
 
         try {
-            const query = 'DELETE FROM module_info WHERE id = ?';
+            const query = 'DELETE FROM admin_page_list WHERE id = ?';
             connection.query(query, [id], (error, result) => {
                 if (!error && result.affectedRows > 0) {
                     console.log(result);
@@ -253,7 +253,7 @@ const AdminPageListModel = {
 
     deleteSingleAdminPageList: async (req, res) => {
         try {
-            const query = 'DELETE FROM module_info WHERE id = ?';
+            const query = 'DELETE FROM admin_page_list WHERE id = ?';
             connection.query(query, [req.params.id], (error, result) => {
                 if (!error && result.affectedRows > 0) {
                     console.log(result);
@@ -274,7 +274,7 @@ const AdminPageListModel = {
     getPageGroupAndControllerNamesId: async (req, res) => {
         const query = `
         SELECT ap.page_group, ap.controller_name, ap.display_name, ap.method_name
-        FROM module_info ap
+        FROM admin_page_list ap
         WHERE ap.parent_id != 0
         AND ap.menu_type = 1 
         GROUP BY ap.page_group, ap.controller_name, ap.display_name, ap.method_name
@@ -340,7 +340,7 @@ const AdminPageListModel = {
 
         try {
             const skipRow = (pageNo - 1) * perPage;
-            const rowsQuery = `SELECT * FROM module_info  where parent_id = 0 order by controller_name asc LIMIT ${skipRow}, ${perPage} `;
+            const rowsQuery = `SELECT * FROM admin_page_list  where parent_id = 0 order by controller_name asc LIMIT ${skipRow}, ${perPage} `;
 
             connection.query(rowsQuery, function (error, result) {
                 console.log(result)
@@ -429,7 +429,7 @@ const AdminPageListModel = {
                 SELECT
                   ap.page_group,
                   GROUP_CONCAT(DISTINCT ap.controller_name) AS controller_names
-                FROM module_info ap
+                FROM admin_page_list ap
                 WHERE ap.parent_id = 0
                   AND ap.page_group IS NOT NULL
                   AND ap.page_group != ''
@@ -455,7 +455,7 @@ const AdminPageListModel = {
       getPageGroupAndControllerNamesssId: async (req, res) => {
         const query = `
         SELECT ap.id AS page_group_id, ap.page_group, ap.controller_name, ap.display_name, ap.method_name
-        FROM module_info ap
+        FROM admin_page_list ap
         WHERE ap.parent_id != 0
         AND ap.menu_type = 1 
         GROUP BY ap.page_group, ap.controller_name, ap.display_name, ap.method_name
@@ -517,7 +517,7 @@ const AdminPageListModel = {
 
         //     const query = `
         //     SELECT ap.id AS page_group_id, ap.page_group, ap.controller_name, ap.display_name, ap.id AS method_id, ap.method_name, ap.parent_id, ap.menu_type, ap.method_sort
-        //     FROM module_info ap
+        //     FROM admin_page_list ap
         //     GROUP BY ap.page_group, ap.controller_name, ap.display_name, ap.id
         //     HAVING ap.page_group IS NOT NULL AND ap.page_group != '';
         // `;
@@ -581,7 +581,7 @@ const AdminPageListModel = {
     
         // const query = `
         //     SELECT ap.id AS page_group_id, ap.page_group, ap.controller_name, ap.display_name, ap.id AS method_id, ap.method_name, ap.parent_id, ap.menu_type, ap.method_sort
-        //     FROM module_info ap
+        //     FROM admin_page_list ap
         //     GROUP BY ap.page_group, ap.controller_name, ap.display_name, ap.id
         //     HAVING ap.page_group IS NOT NULL AND ap.page_group != '';
         // `;
@@ -650,7 +650,7 @@ const AdminPageListModel = {
         // });
         const query = `
         SELECT ap.id AS page_group_id, ap.page_group, ap.controller_name, ap.display_name, ap.id AS method_id, ap.method_name, ap.parent_id, ap.menu_type, ap.method_sort
-        FROM module_info ap
+        FROM admin_page_list ap
         GROUP BY ap.page_group, ap.controller_name, ap.display_name, ap.id
         HAVING ap.page_group IS NOT NULL AND ap.page_group != '';
     `;

@@ -1,0 +1,74 @@
+
+
+			
+ 
+			.header_background_color{background:linear-gradient(to right top, rgba(191, 99, 99, 0), rgba(182, 99, 99, 0))!important}
+
+			.sub_header_background_color{background:linear-gradient(to right top, rgba(164, 76, 76, 0), rgba(0, 0, 0, 0))!important}
+
+            
+			.bg_card_body{background:linear-gradient(to right top, rgba(70, 32, 32, 0), rgba(131, 58, 58, 0))!important}
+
+
+			.side_menu_bg{background:linear-gradient(to right, rgba(125, 54, 54, 1), rgba(163, 51, 51, 1))!important}
+
+			.side_menu_l1_bg{background:linear-gradient(to right, rgba(201, 49, 49, 0), rgba(132, 31, 31, 0))!important;
+
+			border-bottom:  1px solid rgb(187, 62, 62)!important;
+		    }
+         
+
+			.side_menu_l2_bg{background:linear-gradient(to right, rgba(65, 200, 173, 0.9), rgba(40, 128, 102, 0.9))!important;
+
+			border-bottom:  1px solid rgb(48, 72, 123)!important;
+		    }
+
+			.side_menu_l3_bg{background:linear-gradient(to right, rgba(52, 78, 134, 1), rgba(52, 78, 134, 1))!important;
+
+			border-bottom:  1px solid rgb(48, 72, 123)!important;
+		    }
+
+
+			.body_content_bg{
+			background:linear-gradient(to left top, rgba(255, 255, 255, 1), rgba(238, 238, 238, 1)),
+			 url('')!important;
+
+		     }
+
+			.body_bg{
+			
+			background:linear-gradient(to right top, rgba(255, 255, 255, 1), rgba(238, 238, 238, 1)),
+		
+			 url('')!important;
+
+		    }
+
+			.card_header_bg{
+					
+			  background:linear-gradient(to right, rgba(55, 82, 140, 1), rgba(55, 82, 140, 1)),
+		
+			  url('')!important;
+
+			 
+		      }
+
+              
+			.header_color{color: rgb(97, 46, 46)!important}
+			.card_header_color{color: rgb(255, 255, 255)!important}
+			.body_color{color: rgb(255, 0, 0)!important}
+		
+
+
+			.sub_header_pg_text_color{color: rgb(35, 31, 31)!important}
+			.sub_header_controller_text_color{color: rgb(0, 0, 0)!important}
+			.sub_header_options_text_color{color: rgb(0, 0, 0)!important}
+			.card_body_color{color: rgb(0, 0, 0)!important}
+			.side_menu_l1_color{color: rgb(39, 37, 37)!important}
+			.side_menu_l2_color{color: rgb(255, 255, 255)!important}
+			.side_menu_l3_color{color: rgb(255, 255, 255)!important}
+			.body_content_color{color: rgb(255, 255, 255)!important}
+			.card_header_color{color: rgb(255, 255, 255)!important}
+			.project_name_color{color: rgb(0, 0, 0)!important}
+
+
+			
